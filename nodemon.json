@@ -1,0 +1,10 @@
+{
+  "verbose": true,
+  "ignore": [
+    "*.test.js",
+    "mode_modules/*",
+    "public/*",
+    "client/*",
+    "*.log"
+  ]
+}

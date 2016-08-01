@@ -1,0 +1,55 @@
+{
+  "name": "Gamer",
+  "plural": "gamers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "userName": {
+      "type": "string"
+    },
+    "discordUserId": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "discordAvatarURL": {
+      "type": "string"
+    },
+    "lastDiscordChatMessage": {
+      "type": "string"
+    },
+    "activeDiscordAccount": {
+      "type": "string"
+    },
+    "lastDiscordVoiceConnect": {
+      "type": "string"
+    },
+    "lastForumPost": {
+      "type": "string"
+    },
+    "lastForumVisit": {
+      "type": "string"
+    },
+    "forumAlias": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "games": {
+      "type": "hasMany",
+      "model": "Game",
+      "through": "Gamelog"
+    },
+    "voiplogs": {
+      "type": "hasMany",
+      "model": "Voiplog"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

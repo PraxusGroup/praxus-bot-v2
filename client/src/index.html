@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Mirror</title>
+    <base href="/">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="vendor/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="vendor/materialize/bin/materialize.css">
+    <link rel="stylesheet" href="vendor/animate.css/animate.css">
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/+dashboard/dashboard.css">
+    <link rel="stylesheet" href="css/+login/login.css">
+    <link rel="stylesheet" href="css/widgets/actionButton.css">
+    <link rel="stylesheet" href="css/widgets/fillheight.css">
+    <link rel="stylesheet" href="css/widgets/materialInput.css">
+    <link rel="stylesheet" href="css/widgets/memberPhoto.css">
+    <link rel="stylesheet" href="css/widgets/modalPane.css">
+    <link rel="stylesheet" href="css/widgets/selectable.css">
+    <link rel="stylesheet" href="css/widgets/selectableGroup.css">
+    <!-- endinject -->
+
+  </head>
+  <body ng-class="$root.modalOpen ? 'modal-open' : ''" ng-cloak>
+
+    <ui-view name="navbar"
+      ng-class="$root.loggedIn ? 'loggedIn' : ''"
+      autoscroll="true"
+      class="anim-in-out"
+      data-anim-sync="true"
+      data-anim-speed="1000">
+    </ui-view>
+
+    <ui-view name="main"
+      autoscroll="true"
+      class="anim-in-out"
+      data-anim-sync="true"
+      data-anim-speed="1000">
+    </ui-view>
+
+    <!-- bower:js -->
+    <script src="vendor/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="vendor/jquery/dist/jquery.js"></script>
+    <script src="vendor/materialize/bin/materialize.js"></script>
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/angular-animate/angular-animate.js"></script>
+    <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
+    <script src="vendor/angular-touch/angular-touch.js"></script>
+    <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="vendor/angular-ui-router-anim-in-out/anim-in-out.js"></script>
+    <script src="vendor/angular-permission/dist/angular-permission.js"></script>
+    <script src="vendor/angular-permission/dist/angular-permission-ui.js"></script>
+    <script src="vendor/angular-permission/dist/angular-permission-ng.js"></script>
+    <script src="vendor/localforage/dist/localforage.js"></script>
+    <script src="vendor/angular-materialize/src/angular-materialize.js"></script>
+    <script src="vendor/raven-js/dist/raven.js"></script>
+    <script src="vendor/angular-payments/lib/angular-payments.js"></script>
+    <script src="vendor/ui-router-extras/release/ct-ui-router-extras.js"></script>
+    <script src="vendor/multiline/browser.js"></script>
+    <script src="vendor/es6-promise/promise.js"></script>
+    <script src="vendor/angular-resource/angular-resource.js"></script>
+    <script src="vendor/angular-localforage/dist/angular-localForage.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <script src="app/blocks/logger/logger.module.js"></script>
+    <script src="app/blocks/logger/logger.service.js"></script>
+    <script src="app/blocks/logger/logger.constants.js"></script>
+    <script src="app/blocks/logger/dialog.service.js"></script>
+    <script src="app/blocks/exception/exception.module.js"></script>
+    <script src="app/blocks/exception/exception.service.js"></script>
+    <script src="app/blocks/exception/exception.const.js"></script>
+    <script src="app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="app/widgets/widgets.module.js"></script>
+    <script src="app/widgets/selectableGroup.directive.js"></script>
+    <script src="app/widgets/selectable.directive.js"></script>
+    <script src="app/widgets/ngPlaceholder.directive.js"></script>
+    <script src="app/widgets/ngHtmlPattern.directive.js"></script>
+    <script src="app/widgets/modalPane.directive.js"></script>
+    <script src="app/widgets/materialTime.directive.js"></script>
+    <script src="app/widgets/materialInput.directive.js"></script>
+    <script src="app/widgets/materialDate.directive.js"></script>
+    <script src="app/widgets/fillheight.directive.js"></script>
+    <script src="app/widgets/actionButton.directive.js"></script>
+    <script src="app/core/raf.polyfill.js"></script>
+    <script src="app/core/lb-services.js"></script>
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/core.router.config.js"></script>
+    <script src="app/core/core.roles.js"></script>
+    <script src="app/core/core.permissions.js"></script>
+    <script src="app/core/core.constants.js"></script>
+    <script src="app/core/core.config.js"></script>
+    <script src="app/core/change.service.js"></script>
+    <script src="app/core/cache.service.js"></script>
+    <script src="app/+login/login.module.js"></script>
+    <script src="app/+login/newPasswordForm.directive.js"></script>
+    <script src="app/+login/loginForm.directive.js"></script>
+    <script src="app/+login/login.routes.js"></script>
+    <script src="app/+login/login.controller.js"></script>
+    <script src="app/+login/forgotForm.directive.js"></script>
+    <script src="app/+landing/landing.module.js"></script>
+    <script src="app/+landing/landing.route.js"></script>
+    <script src="app/+dashboard/dashboard.module.js"></script>
+    <script src="app/+dashboard/dashboard.routes.js"></script>
+    <script src="app/+dashboard/dashboard.controller.js"></script>
+    <script src="app/app.module.js"></script>
+    <!-- endinject -->
+
+  </body>
+</html>

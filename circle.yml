@@ -1,0 +1,19 @@
+machine:
+  environment:
+    NODE_ENV: development
+    DISABLE_RAVEN: true
+
+  node:
+    version: 6.2.1
+
+dependencies:
+  cache_directories:
+    - "client/src/vendor"
+  pre:
+    - npm install -g npm
+
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: APP_NAME

@@ -1,0 +1,20 @@
+<form ng-submit="sm.submitEmail(sm.login)">
+  <material-input
+    name="email"
+    label="Email"
+    required="true"
+    ng-model="sm.login.email">
+  </material-input>
+
+  <button type="submit" ng-disabled="sm.loading !== false" class="btn btn-flat btn-full primary-action waves-effect waves-light">
+    <span ng-if="!sm.loading">Reset Password</span>
+
+    <div ng-if="sm.loading === 'loading'" class="preloader-svg-wrapper animate-bounce">
+      <img src="images/svg-loaders/three-dots.svg" />
+    </div>
+
+    <span ng-if="sm.loading === 'error'">Error</span>
+
+    <span ng-if="sm.loading === 'success'">Success</span>
+  </button>
+</form>

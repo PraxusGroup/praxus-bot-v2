@@ -1,0 +1,57 @@
+modal-pane {
+  modal-title {
+    display:block;
+    position: relative;
+    width: auto;
+    height:auto;
+    padding: 2em;
+
+    i {
+      line-height: 0em !important;
+    }
+
+    .title {
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      line-height: 3em;
+      position: absolute;
+      left: 4em;
+      right: 4em;
+      white-space: nowrap;
+      overflow: hidden;
+      top: 0;
+      bottom: 0;
+    }
+  }
+}
+
+.modal.modal-fixed-footer {
+  .modal-content {
+    height: calc(100% - 130px - 2em);
+    max-height: 100%;
+    width: 100%;
+    overflow-y: auto;
+  }
+
+  .modal-footer {
+    position: fixed;
+    bottom:0;
+    height: auto;
+
+    .btn {
+      margin: 1em;
+      padding: 1.5em 3em;
+    }
+  }
+}
+
+.cancel-action {
+  color: rgba(0,0,0,0.44);
+
+  &:hover {
+    color: rgba(0,0,0,0.44) !important;
+    background-color: #f1f1f1;
+    box-shadow: none;
+  }
+}
