@@ -10,6 +10,7 @@
     "bower": "bower i"
   },
   "dependencies": {
+    "bluebird": "^3.4.1",
     "bower": "^1.7.9",
     "compression": "1.6.2",
     "cors": "2.5.2",
@@ -41,13 +42,13 @@
     "loopback-component-explorer": "2.5.0",
     "loopback-datasource-juggler": "2.47.0",
     "main-bower-files": "^2.13.1",
-    "mirror-api": "^0.1.2",
     "node-neat": "^1.7.2",
     "raven": "^0.11.0",
     "serve-favicon": "2.3.0",
     "strong-error-handler": "1.0.1"
   },
   "devDependencies": {
+    "nodemon": "^1.10.0",
     "nsp": "2.1.0"
   },
   "repository": {

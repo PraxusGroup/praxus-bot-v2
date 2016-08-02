@@ -1,9 +1,9 @@
-var loopback = require('loopback');
-var boot = require('loopback-boot');
-var path = require('path');
-var env = process.env.NODE_ENV || 'development';
+const loopback     = require('loopback');
+const boot         = require('loopback-boot');
+const path         = require('path');
 
-var app = module.exports = loopback();
+const env = process.env.NODE_ENV || 'development';
+const app = module.exports = loopback();
 
 app.start = function() {
   

@@ -31,5 +31,20 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Game": {
+    "dataSource": "db"
+  },
+  "Gamer": {
+    "dataSource": "db"
+  },
+  "Chatlog": {
+    "dataSource": "db"
+  },
+  "Voiplog": {
+    "dataSource": "db"
+  },
+  "Gamelog": {
+    "dataSource": "db"
   }
 }
