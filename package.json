@@ -51,6 +51,10 @@
     "nodemon": "^1.10.0",
     "nsp": "2.1.0"
   },
+  "engines": {
+    "node": "6.3.0",
+    "npm": "3.10.3"
+  },
   "repository": {
     "type": "",
     "url": ""

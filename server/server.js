@@ -58,4 +58,10 @@ function mountAngular(mountPath) {
     
     res.sendFile(staticPath + '/index.html');
   });
+
+  app.use(function handleErrors(err, req, res, next) {
+    console.log(err);
+
+    next(err);
+  });
 }

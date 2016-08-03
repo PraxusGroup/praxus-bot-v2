@@ -1,4 +1,4 @@
-import Promise from 'bluebird';
+const Promise = require('bluebird');
 
 class GameLogger {
   constructor(app, bot) {
@@ -12,24 +12,30 @@ class GameLogger {
 
   initEvents() {
     console.log('Init: GameLogger Events');
-    this.bot.on('presence', this.startGame);
+    this.bot.on('presence', (user, userID, status, game) => {
+      if (game) {
+        let gamer = {
+          username: user,
+          id: userID
+        };
+
+        this.startGame(gamer, game);
+      }
+    });
   }
 
-  startGame(oldUser, newUser) {
-    if (this.checkStartGame(oldUser, newUser)) {
-      Promise.join(
-        this.Gamer.findOrCreate(newUser),
-        this.Game.findOrCreate(newUser.game),
-        (gamer, game) => {
-          this.db.Gamelog
-            .create({
-              playedOn: new Date(),
-              gameId: game.id,
-              gamerId: gamer.id
-            });
-        }
-      );
-    }
+  startGame(user, gameStart) {
+    return Promise.join(
+      this.Gamer.findOrCreate(user),
+      this.Game.findOrCreate(gameStart),
+      (gamer, game) => {
+        this.db.Gamelog
+          .create({
+            gamerId: gamer[0].id,
+            gameId: game[0].id
+          });
+      }
+    );
   }
 
   checkStartGame(oldUser, newUser) {

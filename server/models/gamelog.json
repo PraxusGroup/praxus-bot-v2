@@ -9,7 +9,7 @@
   "properties": {
     "playedOn": {
       "type": "date",
-      "required": true
+      "defaultFn": "now"
     }
   },
   "validations": [],

@@ -7,35 +7,18 @@
     "validateUpsert": true
   },
   "properties": {
-    "userName": {
-      "type": "string"
+    "userName": "string",
+    "discordUserId": "string",
+    "roles": {
+      "type": "array",
+      "default": [
+        "Guest"
+      ]
     },
-    "discordUserId": {
-      "type": "string"
-    },
-    "role": {
-      "type": "string"
-    },
-    "discordAvatarURL": {
-      "type": "string"
-    },
-    "lastDiscordChatMessage": {
-      "type": "string"
-    },
-    "activeDiscordAccount": {
-      "type": "string"
-    },
-    "lastDiscordVoiceConnect": {
-      "type": "string"
-    },
-    "lastForumPost": {
-      "type": "string"
-    },
-    "lastForumVisit": {
-      "type": "string"
-    },
-    "forumAlias": {
-      "type": "string"
+    "discordAvatarURL": "string",
+    "lastDiscordActivity": {
+      "type": "date",
+      "defaultFn": "now"
     }
   },
   "validations": [],
@@ -44,10 +27,6 @@
       "type": "hasMany",
       "model": "Game",
       "through": "Gamelog"
-    },
-    "voiplogs": {
-      "type": "hasMany",
-      "model": "Voiplog"
     }
   },
   "acls": [],

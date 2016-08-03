@@ -38,12 +38,6 @@
   "Gamer": {
     "dataSource": "db"
   },
-  "Chatlog": {
-    "dataSource": "db"
-  },
-  "Voiplog": {
-    "dataSource": "db"
-  },
   "Gamelog": {
     "dataSource": "db"
   }

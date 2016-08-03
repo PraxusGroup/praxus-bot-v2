@@ -18,9 +18,9 @@
       "model": "Gamer",
       "through": "Gamelog"
     },
-    "gamepopularitylogs": {
+    "gamelogs": {
       "type": "hasMany",
-      "model": "Gamepopularitylog"
+      "model": "Gamelog"
     }
   },
   "acls": [],
