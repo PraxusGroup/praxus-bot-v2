@@ -8,7 +8,7 @@ class Gamer {
   }
 
   initEvents() {
-    this.bot.on('any', function(event) { 
+    this.bot.on('any', (event) => { 
       if (event.d && event.d.user_id) {
         this.bumpLastActivity(event.d.user_id);
       }
