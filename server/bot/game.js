@@ -8,8 +8,6 @@ class Game {
   }
 
   findOrCreate(game) {
-    console.log(game);
-
     let title = this.gameName(game.name);
 
     let query = {
