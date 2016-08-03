@@ -33,7 +33,7 @@ module.exports = function(app) {
   });
 
   bot.on('message', (user, userID, channelID, message, event) => {
-    if (message === 'ping') {
+    if (message === '!ping') {
       bot.sendMessage({
         to: channelID,
         message: 'pong'

@@ -10,31 +10,29 @@ class Game {
   findOrCreate(game) {
     let title = this.gameName(game.name);
 
-    let query = {
-      where: {
-        title: title
-      }
-    };
-
     let newGame = {
       title: title
+    };
+
+    let query = {
+      where: newGame
     };
 
     return this.db.Game.findOrCreate(query, newGame);
   }
 
   gameName(title) {
-    title = title.toLowerCase();
+    var check = title.toLowerCase();
     
-    if (title === 'arma iii'.toLowerCase()) {
+    if (check === 'arma iii'.toLowerCase()) {
       return 'Arma 3';
-    } else if (title === 'day z'.toLowerCase()) {
+    } else if (check === 'day z'.toLowerCase()) {
       return 'DayZ';
-    } else if (title === 'skyrim'.toLowerCase()) {
+    } else if (check === 'skyrim'.toLowerCase()) {
       return 'The Elder Scrolls V: Skyrim';
-    } else if (title === 'FINAL FANTASY XIV'.toLowerCase()) {
+    } else if (check === 'FINAL FANTASY XIV'.toLowerCase()) {
       return 'FINAL FANTASY XIV - A Realm Reborn';
-    } else if (title === 'Total War Rome II'.toLowerCase()) {
+    } else if (check === 'Total War Rome II'.toLowerCase()) {
       return 'Total War: ROME 2';
     } else {
       return title;

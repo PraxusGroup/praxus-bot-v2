@@ -39,7 +39,6 @@ class Tactical {
       .then(() => {
         console.log('Finalized: Sync GamerRoles');
       });
-    
   }
   
 }
