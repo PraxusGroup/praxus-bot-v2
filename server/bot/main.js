@@ -10,17 +10,17 @@ class Tactical {
     this.app = app;
     this.bot = bot;
 
-    if (!this.bot.servers || !this.bot.servers.length)
-      throw new Error('Unable to connect to server');
-
     for (const key in this.bot.servers) {
-      this.id = key;
+      this.serverId = key;
     }
 
-    this.server = this.bot.servers[this.id];
+    if (!this.serverId)
+      throw new Error('Unable to connect to server');
+
+    this.server = this.bot.servers[this.serverId];
     
     console.log(this.bot.username + ' - (' + this.bot.id + ')');
-    console.log('Connected to server: ', this.bot.servers[this.id].name);
+    console.log('Connected to server: ', this.bot.servers[this.serverId].name);
 
     this.gameLogger = require('./gameLogger.js')(app, bot);
     this.gameLogger.initEvents();
