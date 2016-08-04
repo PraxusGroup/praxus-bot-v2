@@ -6,7 +6,8 @@ const raven    = require('raven');
 const env = process.env.NODE_ENV || 'development';
 const app = module.exports = loopback();
 
-const dsn = 'https://da7785c75c21461cb03821b4168a20b0@app.getsentry.com/90501';
+const dsn = process.env.RAVEN_DSN || 
+  'https://da7785c75c21461cb03821b4168a20b0@app.getsentry.com/90501';
 const ravenClient = new raven.Client(dsn);
 
 ravenClient.patchGlobal();
