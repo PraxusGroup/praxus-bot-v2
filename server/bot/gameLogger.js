@@ -29,18 +29,13 @@ class GameLogger {
       this.Gamer.findOrCreate(user),
       this.Game.findOrCreate(gameStart),
       (gamer, game) => {
-        this.db.Gamelog
+        return this.db.Gamelog
           .create({
             gamerId: gamer[0].id,
             gameId: game[0].id
           });
       }
     );
-  }
-
-  checkStartGame(oldUser, newUser) {
-    return (oldUser.status === newUser.status) &&
-      ((newUser.game && !oldUser.game) || (newUser.game && oldUser.game));
   }
 }
 
