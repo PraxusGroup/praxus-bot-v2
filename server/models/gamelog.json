@@ -1,6 +1,6 @@
 {
   "name": "Gamelog",
-  "plural": "gameplogs",
+  "plural": "gamelogs",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
