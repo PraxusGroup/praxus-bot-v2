@@ -10,6 +10,9 @@ class Tactical {
     this.app = app;
     this.bot = bot;
 
+    if (!this.bot.servers || !this.bot.servers.length)
+      throw new Error('Unable to connect to server');
+
     for (const key in this.bot.servers) {
       this.id = key;
     }

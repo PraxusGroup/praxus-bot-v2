@@ -9,6 +9,10 @@
     "build": "gulp build",
     "bower": "bower i"
   },
+  "cacheDirectories": [
+    "node_modules",
+    "client/src/vendor"
+  ],
   "dependencies": {
     "bluebird": "^3.4.1",
     "bower": "^1.7.9",

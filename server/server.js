@@ -1,9 +1,15 @@
-const loopback     = require('loopback');
-const boot         = require('loopback-boot');
-const path         = require('path');
+const loopback = require('loopback');
+const boot     = require('loopback-boot');
+const path     = require('path');
+const raven    = require('raven');
 
 const env = process.env.NODE_ENV || 'development';
 const app = module.exports = loopback();
+
+const dsn = 'https://da7785c75c21461cb03821b4168a20b0@app.getsentry.com/90501';
+const ravenClient = new raven.Client(dsn);
+
+ravenClient.patchGlobal();
 
 app.start = function() {
   
@@ -59,8 +65,29 @@ function mountAngular(mountPath) {
     res.sendFile(staticPath + '/index.html');
   });
 
+  //An Error Handler
   app.use(function handleErrors(err, req, res, next) {
-    console.log(err);
+    var errorCode;
+    if (err) {
+      try {
+        var code = err.code || err.status || err.statusCode || false;
+        if (code) {
+          errorCode = parseInt(code);
+        }
+      } catch (e) {
+        errorCode = false;
+      }
+    }
+
+    ravenClient.captureMessage(err.message || err, {
+      extra: {
+        error: err,
+        code: errorCode,
+        method: req.method,
+        url: req.originalUrl,
+        body: req.body
+      }
+    });
 
     next(err);
   });

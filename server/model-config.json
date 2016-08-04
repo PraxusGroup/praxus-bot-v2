@@ -14,31 +14,31 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "database"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "database",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "database",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "database",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "database",
     "public": false
   },
   "Game": {
-    "dataSource": "db"
+    "dataSource": "database"
   },
   "Gamer": {
-    "dataSource": "db"
+    "dataSource": "database"
   },
   "Gamelog": {
-    "dataSource": "db"
+    "dataSource": "database"
   }
 }
