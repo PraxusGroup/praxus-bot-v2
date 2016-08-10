@@ -6,11 +6,9 @@
     .run(PermissionsConfig);
 
   /* @ngInject */
-  function PermissionsConfig(PermissionStore, LoopBackAuth) {
+  function PermissionsConfig(PermissionStore) {
     PermissionStore
-      .definePermission('isLoggedIn', function() {
-        return LoopBackAuth.currentUserId ? true : false;
-      });
+      .definePermission('isLoggedIn', function(){return true;});
   }
 
 })();
