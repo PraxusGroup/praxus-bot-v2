@@ -6,9 +6,8 @@
     .controller('LoginController', LoginController);
 
   /* @ngInject */
-  function LoginController($window, $timeout, $state, $stateParams, PromiseLogger, Auth) {
+  function LoginController($window, $timeout, $state, $stateParams, Dialog, User) {
     var vm = this;
-    var ccShown = false;
 
     vm.mode = $stateParams.token && $stateParams.email ? 'new' : 'login';
     vm.toggleModes = toggleModes;
@@ -37,26 +36,7 @@
     }
 
     function loginSuccess(user) {
-      vm.user = user;
-
-      localStorage.removeItem('partner');
-
-      var delayLogin = Auth.verifyUserInfo(user);
-
-      if (delayLogin === 'credit-card') {
-        if (!ccShown) ccShown = true;
-        else delayLogin = false;
-      }
-
-      if (!delayLogin) {
-        Auth
-          .saveAuthInfo(user)
-          .then(function() {
-            $state.go('dashboard');
-          });
-      } else {
-        vm.mode = delayLogin;
-      }
+      $state.go('dashboard');
     }
 
     function loginFailure(err) {
@@ -64,7 +44,7 @@
     }
 
     function forgotSuccess(email) {
-      PromiseLogger.successDialog(
+      Dialog.success(
         'Email Sent',
         'We\'ve sent an email to ' + email.replace(/\s/g, '+') +
         ' with instructions on how to reset your password'
@@ -78,7 +58,7 @@
         token: null
       };
 
-      PromiseLogger.successDialog(
+      Dialog.success(
         'Success!',
         'We\'ve successfully changed the password for ' + email +
         '. You may now login with your new password.'
@@ -100,7 +80,7 @@
         message = err;
       }
 
-      PromiseLogger.errorDialog(title || 'Uh oh', message);
+      Dialog.error(title || 'Uh oh', message);
 
       throw new Error(err);
     }

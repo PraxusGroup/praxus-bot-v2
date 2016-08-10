@@ -10,9 +10,13 @@
 
     $stateProvider
       .state({
+        name: 'landing',
+        url: '/',
+        redirectTo: 'login'
+      })
+      .state({
         name: 'login',
         url: '/login?token&email',
-        title: 'Login',
         views: {
           'main@': {
             templateUrl: 'app/+login/login.html',

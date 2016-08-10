@@ -5,13 +5,13 @@
         class="row animate-zoom">
         <div class="col s12 center-align">
           <div class="medium-logo">
-            <a href="/"><img src="#" class="responsive-img"/></a>
+            <a href="/"><img src="images/logo.png" class="responsive-img"/></a>
           </div>
         </div>
       </div>
       <div class="row animate-zoom" ng-if="vm.mode === 'login'">
         <div class="col s12">
-          <h6 class="center-align grey-text">Please log in to access your member profile</h6>
+          <h6 class="center-align grey-text">Praxus Bot Interface</h6>
         </div>
       </div>
       <div class="row animate-zoom" ng-if="vm.mode === 'forgot'">
@@ -71,19 +71,11 @@
           </h5>
         </div>
       </div>
-      <div class="row animate-zoom" ng-if="vm.mode === 'new' && vm.mode === 'forgot'" ng-click="vm.toggleModes()">
+      <div class="row animate-zoom" ng-if="vm.mode === 'new' || vm.mode === 'forgot'" ng-click="vm.toggleModes()">
         <div class="col s12 center-align">
           <h5 class="grey-text text-darken-1">
             <strong>Want to login?</strong>
           </h5>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s6 right-align">
-          <a target="_blank" href="/terms">Terms of Service</a>
-        </div>
-        <div class="col s6 left-align">
-          <a target="_blank" href="/privacy">Privacy Policy</a>
         </div>
       </div>
     </div>

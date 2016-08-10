@@ -23,7 +23,7 @@
   }
 
   /* @ngInject */
-  function Controller($timeout, $state, $stateParams, Auth){
+  function Controller($timeout, $state, $stateParams, User){
     var sm = this;
 
     sm.submitReset = submitReset;
@@ -46,7 +46,7 @@
         });
       }
 
-      Auth
+      User
         .reset(reset)
         .then(function(){
           return loadingState('success');

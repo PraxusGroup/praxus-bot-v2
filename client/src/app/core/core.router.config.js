@@ -14,17 +14,8 @@
     $rootScope.stateDeniedHistory = [];
 
     $state.landing = function() {
-      $window.location.href = '/landing';
+      $window.location.href = '/login';
     };
-
-    // adds backwards compatibility for the old dashboard hashbang event links
-    if ($window.location.hash.indexOf('events') > -1) {
-      var ext = decodeURIComponent($window.location.hash);
-      ext = ext.slice(1);
-      $timeout(function(){
-        $window.location.href = '/dashboard' + ext;
-      });
-    }
 
     $rootScope.$on('$stateChangePermissionDenied', function(event, toState, toParams) {
 

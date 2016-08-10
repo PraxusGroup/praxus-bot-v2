@@ -8,7 +8,6 @@
       'app.widgets',
       /* Content Modules */
       'app.login',
-      'app.landing',
       'app.dashboard'
     ]);
 

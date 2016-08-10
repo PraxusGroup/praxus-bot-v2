@@ -6,8 +6,17 @@
     .controller('DashboardController', DashboardController);
 
   /* @ngInject */
-  function DashboardController() {
+  function DashboardController($state, User) {
     var vm = this;
+
+    vm.logout = function() {
+      User
+        .logout()
+        .$promise
+        .then(function() {
+          $state.go('login');
+        });
+    };
    
   }
 })();

@@ -23,7 +23,7 @@
   }
 
   /* @ngInject */
-  function Controller($timeout, Auth){
+  function Controller($timeout, User){
     var sm = this;
 
     sm.submitEmail = submitEmail;
@@ -32,7 +32,7 @@
     function submitEmail(login) {
       sm.loading = 'loading';
 
-      Auth
+      User
         .forgot(login)
         .then(function() {
           return loadingState('success');

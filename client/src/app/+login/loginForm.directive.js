@@ -23,7 +23,7 @@
   }
 
   /* @ngInject */
-  function Controller($timeout, $stateParams, Auth){
+  function Controller($timeout, $stateParams, User){
     var sm = this;
 
     sm.submitLogin = submitLogin;
@@ -40,8 +40,9 @@
 
       var user = null;
 
-      Auth
+      User
         .login(login)
+        .$promise
         .then(function (res) {
           user = res || {};
 
