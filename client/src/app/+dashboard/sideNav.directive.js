@@ -8,7 +8,29 @@
   /* @ngInject */
   function sideNav(multiline) {
     var template = multiline(function(){/*
-      
+      <ul id="slide-out" class="side-nav fixed">
+        <li ui-sref-active-eq="active">
+          <a ui-sref="dashboard">
+            Dashboard
+            <i class="material-icons">dashboard</i>
+          </a>
+        </li>
+        <li>
+          <a ng-click="sm.logout()">
+            Logout
+            <i class="material-icons">exit_to_app</i>
+          </a>
+        </li>
+      </ul>
+      <nav class="hide-on-large-only navbar-mobile">
+        <a class="button-collapse" 
+          data-activates="slide-out" 
+          data-sidenav="left"
+          data-closeonclick="false">
+
+          <i class="material-icons">menu</i>
+        </a>
+      </nav>
     */});
 
     var directive = {
@@ -25,9 +47,16 @@
   }
 
   /* @ngInject */
-  function Controller() {
+  function Controller($state, Auth) {
     var sm = this;
 
-
+    sm.logout = function() {
+      Auth
+        .logout()
+        .$promise
+        .then(function() {
+          $state.go('login');
+        });
+    };
   }
 })();
