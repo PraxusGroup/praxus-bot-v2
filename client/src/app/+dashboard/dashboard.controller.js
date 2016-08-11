@@ -6,14 +6,15 @@
     .controller('DashboardController', DashboardController);
 
   /* @ngInject */
-  function DashboardController($state, User) {
+  function DashboardController($state, Auth) {
     var vm = this;
 
     vm.logout = function() {
-      User
+      Auth
         .logout()
         .$promise
         .then(function() {
+          console.log('beans');
           $state.go('login');
         });
     };

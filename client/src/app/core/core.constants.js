@@ -4,7 +4,8 @@
   swal:false, 
   Materialize:false,
   MaterialAvatar:false, 
-  multiline:false 
+  multiline:false,
+  localStorage:false 
 */
 
 ;(function() {
@@ -15,6 +16,8 @@
     .module('app.core')
     .constant('Materialize', Materialize)
     .constant('swal', swal)
-    .constant('multiline', multiline);
+    .constant('multiline', multiline)
+    .constant('localStorage', localStorage);
+    
 
 })();

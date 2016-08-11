@@ -6,10 +6,26 @@
     .directive('forgotForm', forgotForm);
 
   /* @ngInject */
-  function forgotForm() {
+  function forgotForm(multiline) {
+    var template = multiline(function(){/*
+      <form ng-submit="sm.submitEmail(sm.login)">
+        <material-input
+          name="email"
+          label="Email"
+          required="true"
+          ng-model="sm.login.email">
+        </material-input>
+
+        <action-button
+          default-message="Reset Password"
+          loading-state="sm.loading">
+        </action-button>
+      </form>
+    */});
+
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/+login/forgotForm.html',
+      template: template,
       scope: {},
       bindToController: {
         onForgotFailure: '&',
@@ -23,7 +39,7 @@
   }
 
   /* @ngInject */
-  function Controller($timeout, Auth){
+  function Controller($timeout, User) {
     var sm = this;
 
     sm.submitEmail = submitEmail;
@@ -32,7 +48,7 @@
     function submitEmail(login) {
       sm.loading = 'loading';
 
-      Auth
+      User
         .forgot(login)
         .then(function() {
           return loadingState('success');

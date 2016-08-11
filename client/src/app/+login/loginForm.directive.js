@@ -6,10 +6,35 @@
     .directive('loginForm', loginForm);
 
   /* @ngInject */
-  function loginForm() {
+  function loginForm(multiline) {
+    var template = multiline(function(){/*
+      <form name="login" ng-submit="sm.submitLogin(sm.login)">
+        <material-input
+          name="email"
+          label="Email"
+          type="email"
+          required="true"
+          validate="true"
+          ng-model="sm.login.email">
+        </material-input>
+        <material-input
+          name="password"
+          label="Password"
+          type="password"
+          required="true"
+          ng-model="sm.login.password">
+        </material-input>
+
+        <action-button
+          default-message="LOG IN"
+          loading-state="sm.loading">
+        </action-button>
+      </form>
+    */});
+
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/+login/loginForm.html',
+      template: template,
       scope: {},
       bindToController: {
         onLoginFailure: '&',
@@ -23,7 +48,7 @@
   }
 
   /* @ngInject */
-  function Controller($timeout, $stateParams, Auth){
+  function Controller($timeout, $stateParams, User){
     var sm = this;
 
     sm.submitLogin = submitLogin;
@@ -40,8 +65,9 @@
 
       var user = null;
 
-      Auth
+      User
         .login(login)
+        .$promise
         .then(function (res) {
           user = res || {};
 

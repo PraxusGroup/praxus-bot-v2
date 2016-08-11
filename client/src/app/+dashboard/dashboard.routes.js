@@ -13,9 +13,6 @@
         templateUrl: 'app/+dashboard/dashboard.html',
         controller: 'DashboardController',
         controllerAs: 'vm'
-      },
-      'navbar@': {
-        templateUrl: 'app/+dashboard/dashboardNavbar.html'
       }
     };
 
@@ -35,8 +32,7 @@
         url: '/dashboard',
         title: 'Dashboard',
         views: dashboardViews,
-        data: dashboardData,
-        resolve: dashboardResolve
+        data: dashboardData
       });
 
     /*

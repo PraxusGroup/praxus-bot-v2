@@ -6,10 +6,39 @@
     .directive('newPasswordForm', newPasswordForm);
 
   /* @ngInject */
-  function newPasswordForm() {
+  function newPasswordForm(multiline) {
+    var template = multiline(function(){/*
+      <form ng-submit="sm.submitReset(sm.reset)">
+        <material-input
+          name="password"
+          label="New Password"
+          type="password"
+          pattern=".{8,}"
+          validate="true"
+          required="true"
+          ng-model="sm.reset.password">
+        </material-input>
+        
+        <material-input
+          name="password"
+          label="Confirm Password"
+          type="password"
+          pattern=".{8,}"
+          validate="true"
+          required="true"
+          ng-model="sm.reset.confirm">
+        </material-input>
+
+        <action-button
+          default-message="Update"
+          loading-state="sm.loading">
+        </action-button>
+      </form>
+    */});
+
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/+login/newPasswordForm.html',
+      template: template,
       scope: {},
       bindToController: {
         onResetFailure: '&',
@@ -23,7 +52,7 @@
   }
 
   /* @ngInject */
-  function Controller($timeout, $state, $stateParams, Auth){
+  function Controller($timeout, $state, $stateParams, User) {
     var sm = this;
 
     sm.submitReset = submitReset;
@@ -46,7 +75,7 @@
         });
       }
 
-      Auth
+      User
         .reset(reset)
         .then(function(){
           return loadingState('success');
