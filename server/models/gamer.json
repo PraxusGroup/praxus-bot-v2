@@ -19,7 +19,15 @@
     "lastDiscordActivity": {
       "type": "date",
       "defaultFn": "now"
+    },
+    "lastForgivenTime": {
+      "type": "date",
+      "defaultFn": "now",
+      "description": "The last time a person was forgiven for being absent, +2 weeks"
     }
+  },
+  "mixins": {
+    "SoftDelete" : true
   },
   "validations": [],
   "relations": {
@@ -27,6 +35,10 @@
       "type": "hasMany",
       "model": "Game",
       "through": "Gamelog"
+    },
+    "notes": {
+      "type": "hasMany",
+      "model": "MemberNote"
     }
   },
   "acls": [],

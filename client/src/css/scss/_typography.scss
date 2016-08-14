@@ -20,6 +20,10 @@
   }
 }
 
+.primary-color {
+  background-color: $primary-color !important;
+}
+
 .primary-action-text {
   color: $primary-color-action !important;
 }

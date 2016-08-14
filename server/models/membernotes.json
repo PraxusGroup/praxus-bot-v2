@@ -1,0 +1,29 @@
+{
+  "name": "MemberNote",
+  "plural": "membernotes",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "postedBy": {
+      "type": "string",
+      "description": "a simple username of the person who posted it"
+    },
+    "content": "string",
+    "createdOn": {
+      "type": "date",
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "gamer": {
+      "type": "belongsTo",
+      "model": "Gamer"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

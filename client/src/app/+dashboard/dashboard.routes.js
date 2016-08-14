@@ -24,7 +24,7 @@
     };
 
     var dashboardResolve = {
-      /*events: mainEvents*/
+      gamers: getGamers
     };
 
     $stateProvider
@@ -32,26 +32,40 @@
         url: '/dashboard',
         title: 'Dashboard',
         views: dashboardViews,
-        data: dashboardData
+        data: dashboardData,
+        resolve: dashboardResolve
       });
 
-    /*
-    function mainEvents($rootScope, $q, Events) {
+    
+    function getGamers($q, Gamer) {
       var deferred = $q.defer();
 
-      Events
-        .getCachedEvents($rootScope.city)
-        .then(function(events) {
-          if (events) return $q.resolve(events);
+      var query = {
+        filter: {
+          include: 'notes',
+          limit: 10,
+          order: 'lastForgivenTime DESC'
+        }
+      };
 
-          return Events.getEvents($rootScope.city);
+      Gamer
+        .find(query)
+        .$promise
+        .then(function(gamers) {
+          var temp = [];
+          gamers.forEach(function(gamer) {
+            temp.push(gamer);
+          });
+          
+          deferred.resolve(temp);
         })
-        .then(deferred.resolve)
-        .catch(deferred.reject);
+        .catch(function(err) {
+          deferred.reject(err);
+        });
 
       return deferred.promise;
     }
-    */
+    
   }
 
 })();

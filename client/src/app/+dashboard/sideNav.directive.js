@@ -26,6 +26,7 @@
         <a class="button-collapse" 
           data-activates="slide-out" 
           data-sidenav="left"
+          data-menuwidth="225"
           data-closeonclick="false">
 
           <i class="material-icons">menu</i>

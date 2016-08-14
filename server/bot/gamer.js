@@ -13,6 +13,9 @@ class Gamer {
         this.bumpLastActivity(event.d.user_id);
       }
     });
+
+    // Bumps the bots last activity date to when it was started
+    this.bumpLastActivity(this.bot.id);
   }
 
   bumpLastActivity(gamerId) {
@@ -20,8 +23,11 @@ class Gamer {
       discordUserId: gamerId
     };
 
+    const now = new Date();
+
     return this.db.Gamer.updateAll(query, {
-      lastDiscordActivity: new Date()
+      lastDiscordActivity: now,
+      lastForgivenTime: now
     });
   }
 
@@ -47,14 +53,16 @@ class Gamer {
       discordUserId: member.id
     };
 
-    if (!member.roles.length) return Promise.resolve(member);
-
     member.roles.forEach((roleId, index) => {
       member.roles[index] = roles[roleId].name;
     });
 
+    if (!member.roles.length) {
+      member.roles.push("Guest");
+    }
+
     return this.db.Gamer.updateAll(query, {
-      roles: member.roles,
+      roles: member.roles
     });
   }
 

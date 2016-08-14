@@ -6,18 +6,10 @@
     .controller('DashboardController', DashboardController);
 
   /* @ngInject */
-  function DashboardController($state, Auth) {
+  function DashboardController(Gamer, gamers) {
     var vm = this;
 
-    vm.logout = function() {
-      Auth
-        .logout()
-        .$promise
-        .then(function() {
-          console.log('beans');
-          $state.go('login');
-        });
-    };
+    vm.gamers = gamers;
    
   }
 })();

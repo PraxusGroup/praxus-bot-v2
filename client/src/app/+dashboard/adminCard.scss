@@ -1,0 +1,31 @@
+admin-card {
+  position: relative;
+  display: block;
+
+  .notes {
+    position: absolute;
+    right:1em;
+    top:1em;
+
+    .btn-floating {
+      background-color: #ffc823;
+    }
+
+    i {
+      vertical-align: middle;
+      margin-bottom: 2px;
+    }
+  }
+
+  .card .card-title {
+    margin-top: 0;
+
+    font-size: 1.6em;
+    line-height: 1em;
+    font-weight: 500;
+  }
+
+  .card .card-action a:last-child {
+    margin-right: 0 !important;
+  }
+}

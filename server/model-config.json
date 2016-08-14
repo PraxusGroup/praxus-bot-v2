@@ -40,5 +40,8 @@
   },
   "Gamelog": {
     "dataSource": "database"
+  },
+  "MemberNote": {
+    "dataSource": "database"
   }
 }
