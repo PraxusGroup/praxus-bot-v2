@@ -333,7 +333,7 @@ gulp.task('build:js:vendor', function() {
     .pipe(gulp.dest(dest.jsPath));
 });
 
-gulp.task('build:js:app', ['build:js:lbservices'], function(){
+gulp.task('build:js:app', function() {
 
   writeRavenReleaseFile(buildId);
 
