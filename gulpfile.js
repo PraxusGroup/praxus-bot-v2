@@ -35,7 +35,7 @@ var bowerFiles  = require('main-bower-files');
 var angularSort = require('gulp-angular-filesort');
 
 // Live Reload Enabled
-var livereload  = require('gulp-livereload');
+var livereload  = require('gulp-refresh');
 
 // --------------------------------------------------------------------
 // BUILD PLUGINS
@@ -46,7 +46,7 @@ var del 				= require('del');
 
 //JS Modules
 var uglify      = require('gulp-uglify');
-var cssmin      = require('gulp-cssmin');
+var cssmin      = require('gulp-clean-css');
 var sourcemaps  = require('gulp-sourcemaps');
 var ngAnnotate  = require('gulp-ng-annotate');
 
@@ -137,7 +137,7 @@ var config = {
 // BUILD Options
 // --------------------------------------------------------------------
 
-var destPath  = __dirname + '/dist/';
+var destPath  = __dirname + '/client/dist/';
 var destIndex = destPath + 'index.html';
 var buildDate = (new Date()).getTime();
 var buildId = parseInt(buildDate/10000);
@@ -355,7 +355,7 @@ gulp.task('build:js:lbservices', function() {
   return gulp.src('./server/server.js')
     .pipe(loopback())
     .pipe(rename('lb-services.js'))
-    .pipe(gulp.dest('./client/src/app/core')); 
+    .pipe(gulp.dest(sourcePath + 'app/core')); 
 });
 
 gulp.task('move:index', ['move:angular', 'move:images', 'move:fonts'], function(){
