@@ -1,5 +1,3 @@
-<side-nav class="slide-in anim-fade">
-</side-nav>
 <div class="slide-in anim-slide-below-fade side-nav-left main-container">
   <div class="container">
     <div class="row">
@@ -8,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div ng-repeat="gamer in vm.gamers | orderBy:'lastForgivenTime':true" class="col s12 m6">
+      <div ng-repeat="gamer in vm.gamers | filter:vm.lastActvityFilter | orderBy:'lastForgivenTime':true" class="col s12 m6">
         <admin-card
           gamer="gamer">
         </admin-card>

@@ -7,7 +7,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "userName": "string",
+    "username": "string",
     "discordUserId": "string",
     "roles": {
       "type": "array",

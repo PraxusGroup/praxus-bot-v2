@@ -39,7 +39,7 @@ class Gamer {
     };
 
     let newGamer = {
-      userName: gamer.username,
+      username: gamer.username,
       discordUserId: gamer.id,
       discriminator: gamer.discriminator || null,
       discordAvatarURL: gamer.avatar || null,

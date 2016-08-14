@@ -8,7 +8,7 @@
   /* @ngInject */
   function adminCard(multiline) {
     var template = multiline(function() {/*
-      <div class="card grey darken-3 white-text">
+      <div class="card grey darken-3 white-text" ng-click="sm.readNote()">
         <div class="card-content">
           <div class="notes">
             <a tooltipped
@@ -16,7 +16,7 @@
               data-position="left" 
               data-delay="150"
               data-tooltip="Add Note"
-              ng-click="sm.addNote()">
+              ng-click="sm.addNote($event)">
               <i class="material-icons">note_add</i>
             </a>
           </div>
@@ -28,7 +28,7 @@
               {{ sm.daysAgo }} Days Ago
             </a>
           </div>
-          <span class="card-title truncate">{{ sm.gamer.userName }}</span>
+          <span class="card-title truncate">{{ sm.gamer.username }}</span>
           <p>
             Notes: {{sm.gamer.notes.length || 0}}
           </p>
@@ -39,11 +39,11 @@
             data-position="top" 
             data-delay="150"
             data-tooltip="Add +2 Weeks"
-            ng-click="sm.forgive()">
+            ng-click="sm.forgive($event)">
             Forgive
           </a>
           <a class="primary-action btn-flat waves-effect waves-light"
-            ng-click="sm.remove()">
+            ng-click="sm.remove($event)">
             Remove
           </a>
         </div>
@@ -66,15 +66,17 @@
   }
 
   /* @ngInject */
-  function Controller($state, Gamer) {
+  function Controller($state, MemberNote) {
     var sm = this;
 
-    sm.forgive = forgive;
+    sm.forgive  = forgive;
+    sm.addNote  = addNote;
+    sm.remove   = remove;
+    sm.readNote = readNote;
 
     sm.daysAgo = daysBetween(new Date(), new Date(sm.gamer.lastDiscordActivity));
 
     function daysBetween(date1, date2) {
-
       var ONE_DAY = 1000 * 60 * 60 * 24;
 
       return Math.round(
@@ -82,8 +84,8 @@
       );
     }
 
-    function forgive() {
-      console.log(sm.gamer);
+    function forgive($event) {
+      $event.stopPropagation();
 
       var lastForgivenTime = new Date(sm.gamer.lastForgivenTime);
       lastForgivenTime.setDate(lastForgivenTime.getDate() + 14 );
@@ -91,6 +93,40 @@
       sm.gamer.lastForgivenTime = lastForgivenTime.toISOString();
 
       sm.gamer.$save();
+    }
+
+    function addNote($event) {
+      $event.stopPropagation();
+
+      var note = {
+        postedBy: 'Admin',
+        content: 'Test',
+        gamerId: sm.gamer.id
+      };
+
+      MemberNote
+        .create(note)
+        .$promise
+        .then(function(res) {
+          sm.gamer.notes.push(res);
+        });
+    }
+
+    function remove($event) {
+      $event.stopPropagation();
+
+      for (var i = 0; i < sm.gamer.roles.length; i++) {
+        if (sm.gamer.roles[i] === 'Member') {
+          sm.gamer.roles.splice(i, 1);
+        }
+      }
+
+      //@TODO: API Call that makes the bot do this in discord too
+      sm.gamer.$save();
+    }
+
+    function readNote() {
+      $state.go('dashboard.gamer', {gamerId: sm.gamer.id});
     }
 
   }

@@ -6,10 +6,19 @@
     .controller('DashboardController', DashboardController);
 
   /* @ngInject */
-  function DashboardController(Gamer, gamers) {
+  function DashboardController(gamers) {
     var vm = this;
 
     vm.gamers = gamers;
-   
+    vm.lastActvityFilter = lastActvityFilter;
+
+    function lastActvityFilter(item) {
+      var cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() - 45 );
+
+      return true;
+
+      //return new Date(item.lastForgivenTime) < cutoff;
+    }
   }
 })();

@@ -13,6 +13,9 @@
         templateUrl: 'app/+dashboard/dashboard.html',
         controller: 'DashboardController',
         controllerAs: 'vm'
+      },
+      'navbar@': {
+        template: '<side-nav class="slide-in anim-fade"></side-nav>'
       }
     };
 
@@ -42,28 +45,18 @@
 
       var query = {
         filter: {
+          where: {
+            roles: {
+              inq: ['Member', 'Applicant']
+            }
+          },
           include: 'notes',
           limit: 10,
           order: 'lastForgivenTime DESC'
         }
       };
 
-      Gamer
-        .find(query)
-        .$promise
-        .then(function(gamers) {
-          var temp = [];
-          gamers.forEach(function(gamer) {
-            temp.push(gamer);
-          });
-          
-          deferred.resolve(temp);
-        })
-        .catch(function(err) {
-          deferred.reject(err);
-        });
-
-      return deferred.promise;
+      return Gamer.find(query).$promise;
     }
     
   }
