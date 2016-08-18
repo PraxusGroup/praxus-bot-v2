@@ -39,7 +39,7 @@ class Gamer {
     });
   }
 
-  findOrCreate(gamer) {
+  create(gamer) {
     let query = {
       where: {
         discordUserId: gamer.id
@@ -58,6 +58,23 @@ class Gamer {
     } else {
       this.syncedGamers.push(gamer.id);
     }
+
+    return this.db.Gamer.findOrCreate(query, newGamer);
+  }
+
+  findOrCreate(gamer) {
+    let query = {
+      where: {
+        discordUserId: gamer.id
+      }
+    };
+
+    let newGamer = {
+      username: gamer.username,
+      discordUserId: gamer.id,
+      discriminator: gamer.discriminator || null,
+      discordAvatarURL: gamer.avatar || null,
+    };
 
     return this.db.Gamer.findOrCreate(query, newGamer);
   }
@@ -89,7 +106,7 @@ class Gamer {
     }
 
     ids.forEach((gamerId) => {
-      sync.push(this.findOrCreate(users[gamerId]));
+      sync.push(this.create(users[gamerId]));
     }); 
 
     return Promise.all(sync);
