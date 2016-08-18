@@ -1,10 +1,9 @@
 {
   "_meta": {
     "sources": [
-      "loopback/common/models",
-      "loopback/server/models",
       "../common/models",
-      "./models"
+      "./models",
+      "./models/loopback"
     ],
     "mixins": [
       "loopback/common/mixins",

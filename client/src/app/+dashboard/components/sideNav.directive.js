@@ -15,6 +15,12 @@
             <i class="material-icons">dashboard</i>
           </a>
         </li>
+        <li ui-sref-active-eq="active">
+          <a ui-sref="dashboard.users">
+            Bot Users
+            <i class="material-icons">android</i>
+          </a>
+        </li>
         <li>
           <a ng-click="sm.logout()">
             Logout
