@@ -1,0 +1,15 @@
+<div class="slide-in anim-slide-below-fade side-nav-left main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center-align">
+        <h3>{{ vm.gamer.username }}</h3>
+        {{ vm.gamer.lastDiscordActivity | date:'mediumDate' }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12" ng-repeat="note in vm.gamer.notes">
+        <note-card note="note"></note-card>
+      </div>
+    </div>
+  </div>
+</div>

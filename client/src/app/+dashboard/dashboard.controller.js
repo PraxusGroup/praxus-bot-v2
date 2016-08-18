@@ -14,11 +14,11 @@
 
     function lastActvityFilter(item) {
       var cutoff = new Date();
-      cutoff.setDate(cutoff.getDate() - 45 );
+      cutoff.setDate(cutoff.getDate() - 1);
 
-      return true;
+      //return true;
 
-      //return new Date(item.lastForgivenTime) < cutoff;
+      return new Date(item.lastForgivenTime) < cutoff;
     }
   }
 })();

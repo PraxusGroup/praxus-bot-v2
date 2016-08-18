@@ -38,7 +38,16 @@
 
   /* @ngInject */
   function getGamer($stateParams, Gamer) {
-    return Gamer.findOne({ id: $stateParams.gamerId }).$promise;
+    var query = {
+      filter: {
+        where: {
+          id: $stateParams.gamerId
+        },
+        include: 'notes'
+      }
+    };
+
+    return Gamer.findOne(query).$promise;
   }
 
 })();

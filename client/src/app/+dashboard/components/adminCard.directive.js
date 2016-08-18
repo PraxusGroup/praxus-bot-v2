@@ -10,19 +10,21 @@
     var template = multiline(function() {/*
       <div class="card grey darken-3 white-text" ng-click="sm.readNote()">
         <div class="card-content">
-          <div class="notes">
+          <div class="notes"
+            ng-href="#{{sm.gamer.id}}"
+            ng-click="sm.stopEvent($event)"
+            modal>
             <a tooltipped
               class="btn-floating waves-effect waves-light"
               data-position="left" 
               data-delay="150"
-              data-tooltip="Add Note"
-              ng-click="sm.addNote($event)">
+              data-tooltip="Add Note">
               <i class="material-icons">note_add</i>
             </a>
           </div>
           <div class="lastActive">
             <a tooltipped 
-              data-position="right" 
+              data-position="right"
               data-delay="150"
               data-tooltip="{{sm.gamer.lastDiscordActivity | date:'mediumDate'}}">
               {{ sm.daysAgo }} Days Ago
@@ -34,7 +36,7 @@
           </p>
         </div>
         <div class="card-action right-align">
-          <a class="btn-flat waves-effect waves-light" 
+          <a class="btn-flat white-text waves-effect waves-light" 
             tooltipped 
             data-position="top" 
             data-delay="150"
@@ -48,7 +50,7 @@
           </a>
         </div>
       </div>
-      
+      <note-modal gamer="sm.gamer"></note-modal>
     */});
 
     var directive = {
@@ -69,10 +71,10 @@
   function Controller($state, MemberNote) {
     var sm = this;
 
-    sm.forgive  = forgive;
-    sm.addNote  = addNote;
-    sm.remove   = remove;
-    sm.readNote = readNote;
+    sm.forgive   = forgive;
+    sm.remove    = remove;
+    sm.readNote  = readNote;
+    sm.stopEvent = stopEvent;
 
     sm.daysAgo = daysBetween(new Date(), new Date(sm.gamer.lastDiscordActivity));
 
@@ -95,21 +97,8 @@
       sm.gamer.$save();
     }
 
-    function addNote($event) {
+    function stopEvent($event) {
       $event.stopPropagation();
-
-      var note = {
-        postedBy: 'Admin',
-        content: 'Test',
-        gamerId: sm.gamer.id
-      };
-
-      MemberNote
-        .create(note)
-        .$promise
-        .then(function(res) {
-          sm.gamer.notes.push(res);
-        });
     }
 
     function remove($event) {

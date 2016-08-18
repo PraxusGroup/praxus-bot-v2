@@ -36,15 +36,6 @@ ui-view {
   display:block;
 }
 
-ui-view[name="navbar"] {
-  max-height: 0px;
-  @include materialBounce(max-height, 200ms);
-
-  &.loggedIn {
-    max-height: 200px;
-  }
-}
-
 .main-container {
   padding-top: 2em;
 }

@@ -5,13 +5,21 @@ class Gamer {
     this.app = app;
     this.bot = bot;
     this.db  = this.app.models;
+    this.syncedGamers = [];
   }
 
   initEvents() {
-    this.bot.on('any', (event) => { 
+    this.bot.on('any', (event) => {
+      if (event.t === 'GUILD_MEMBER_ADD') return;
+
       if (event.d && event.d.user_id) {
         this.bumpLastActivity(event.d.user_id);
       }
+    });
+
+    // Add new member to server
+    this.bot.on('guildMemberAdd', (member, event) => {
+      this.syncGamers(this.bot.users);
     });
 
     // Bumps the bots last activity date to when it was started
@@ -44,6 +52,12 @@ class Gamer {
       discriminator: gamer.discriminator || null,
       discordAvatarURL: gamer.avatar || null,
     };
+
+    if (this.syncedGamers.includes(gamer.id)) {
+      return Promise.resolve(newGamer);
+    } else {
+      this.syncedGamers.push(gamer.id);
+    }
 
     return this.db.Gamer.findOrCreate(query, newGamer);
   }

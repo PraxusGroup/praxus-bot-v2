@@ -52,7 +52,7 @@
           },
           include: 'notes',
           limit: 10,
-          order: 'lastForgivenTime DESC'
+          order: 'lastForgivenTime ASC'
         }
       };
 
