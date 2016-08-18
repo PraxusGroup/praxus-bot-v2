@@ -105,7 +105,8 @@
       $event.stopPropagation();
 
       for (var i = 0; i < sm.gamer.roles.length; i++) {
-        if (sm.gamer.roles[i] === 'Member') {
+        if (sm.gamer.roles[i] === 'Member' || 
+          sm.gamer.roles[i] === 'Applicant') {
           sm.gamer.roles.splice(i, 1);
         }
       }
