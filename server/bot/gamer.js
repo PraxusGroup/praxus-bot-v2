@@ -80,6 +80,36 @@ class Gamer {
     return this.db.Gamer.findOrCreate(query, newGamer);
   }
 
+  syncGamers(users) {
+    let sync = [];
+    let ids = [];
+
+    for (let gamerId in users) {
+      ids.push(gamerId);
+    }
+
+    ids.forEach((gamerId) => {
+      sync.push(this.create(users[gamerId]));
+    });
+
+    return Promise.all(sync);
+  }
+
+  syncGamersRoles(members, roles) {
+    let sync = [];
+    let ids = [];
+
+    for (let gamerId in members) {
+      ids.push(gamerId);
+    }
+
+    ids.forEach((gamerId) => {
+      sync.push(this.syncRole(members[gamerId], roles));
+    });
+
+    return Promise.all(sync);
+  }
+
   syncRole(member, roles) {
     let query = {
       discordUserId: member.id
@@ -96,6 +126,16 @@ class Gamer {
     return this.db.Gamer.updateAll(query, {
       roles: member.roles
     });
+  }
+
+  syncGamersNodeBB(gamers) {
+    let sync = [];
+
+    gamers.forEach((gamer) => {
+      sync.push(this.syncNodeBB(gamer));
+    });
+
+    return Promise.all(sync);
   }
 
   syncNodeBB(gamer) {
@@ -159,46 +199,6 @@ class Gamer {
         resolve(response);
       });
     });
-  }
-
-  syncGamers(users) {
-    let sync = [];
-    let ids = [];
-
-    for (let gamerId in users) {
-      ids.push(gamerId);
-    }
-
-    ids.forEach((gamerId) => {
-      sync.push(this.create(users[gamerId]));
-    });
-
-    return Promise.all(sync);
-  }
-
-  syncGamersRoles(members, roles) {
-    let sync = [];
-    let ids = [];
-
-    for (let gamerId in members) {
-      ids.push(gamerId);
-    }
-
-    ids.forEach((gamerId) => {
-      sync.push(this.syncRole(members[gamerId], roles));
-    });
-
-    return Promise.all(sync);
-  }
-
-  syncGamersNodeBB(gamers) {
-    let sync = [];
-
-    gamers.forEach((gamer) => {
-      sync.push(this.syncNodeBB(gamer));
-    });
-
-    return Promise.all(sync);
   }
 }
 
