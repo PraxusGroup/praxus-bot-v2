@@ -29,6 +29,9 @@
     "dataSource": "database",
     "public": false
   },
+  "Bot": {
+    "dataSource": "database"
+  },
   "BotUser": {
     "dataSource": "database"
   },

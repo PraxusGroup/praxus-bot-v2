@@ -17,7 +17,9 @@
       var cutoff = new Date();
       cutoff.setDate(cutoff.getDate() - 1);
 
-      //return true;
+      if (!item.roles.includes('Member') && !item.roles.includes('Applicant')) {
+        return false;
+      }
 
       return new Date(item.lastForgivenTime) < cutoff;
     }

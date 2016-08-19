@@ -26,6 +26,7 @@
         </material-input>
 
         <action-button
+          style="btn-full"
           default-message="LOG IN"
           loading-state="sm.loading">
         </action-button>

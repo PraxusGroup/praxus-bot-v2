@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const request = require('request');
 
 class Gamer {
   constructor(app, bot) {
@@ -97,6 +98,69 @@ class Gamer {
     });
   }
 
+  syncNodeBB(gamer) {
+    return new Promise((resolve, reject) => {
+      let nodeBBUser;
+      let updateQuery = {
+        discordUserId: gamer.discordUserId
+      };
+
+      // Meaning, we already have the required data
+      if (gamer.nodeBBUserId) return resolve(gamer);
+
+      this._getNodeBBUID(gamer.username)
+        .then((res) => {
+          nodeBBUser = res;
+
+          if (!res) return Promise.resolve(false);
+
+          return this._getNodeBBEmail(res.uid);
+        })
+        .then((res) => {
+          return this.db.Gamer.updateAll(updateQuery, {
+            email: res.email || null,
+            nodeBBUserId: nodeBBUser.uid  || null
+          });
+        })
+        .then(resolve)
+        .catch(reject);
+    });
+  }
+
+  // Uses nodebb-plugin-ns-api to extend the users api to get all user data
+  _getNodeBBEmail(uid) {
+    return this._nodeBB_GET('http://nodebb.praxusgroup.com/api/v1/users/' + uid);
+  }
+
+  _getNodeBBUID(username) {
+    return this._nodeBB_GET('http://nodebb.praxusgroup.com/api/user/' + username);
+  }
+
+  _nodeBB_GET(url) {
+    return new Promise((resolve, reject) => {
+      const options = {
+        url: url,
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + this.app.datasources.nodebb.settings.token
+        }
+      };
+      let response;
+
+      request(options, (err, res) => {
+        if (err) return reject(err);
+
+        if (res.statusCode !== 404) {
+          response = JSON.parse(res.body);
+        } else {
+          response = false;
+        }
+
+        resolve(response);
+      });
+    });
+  }
+
   syncGamers(users) {
     let sync = [];
     let ids = [];
@@ -107,12 +171,12 @@ class Gamer {
 
     ids.forEach((gamerId) => {
       sync.push(this.create(users[gamerId]));
-    }); 
+    });
 
     return Promise.all(sync);
   }
 
-  syncGamerRoles(members, roles) {
+  syncGamersRoles(members, roles) {
     let sync = [];
     let ids = [];
 
@@ -122,6 +186,16 @@ class Gamer {
 
     ids.forEach((gamerId) => {
       sync.push(this.syncRole(members[gamerId], roles));
+    });
+
+    return Promise.all(sync);
+  }
+
+  syncGamersNodeBB(gamers) {
+    let sync = [];
+
+    gamers.forEach((gamer) => {
+      sync.push(this.syncNodeBB(gamer));
     });
 
     return Promise.all(sync);

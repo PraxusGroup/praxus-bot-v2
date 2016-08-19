@@ -9,6 +9,8 @@
   "properties": {
     "username": "string",
     "discordUserId": "string",
+    "nodeBBUserId": "string",
+    "email": "string",
     "roles": {
       "type": "array",
       "default": [

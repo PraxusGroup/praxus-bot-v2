@@ -8,11 +8,11 @@
   /* @ngInject */
   function botUserList(multiline) {
     var template = multiline(function(){/*
-     <ul class="collection with-header">
+     <ul class="collection">
         <li class="collection-item" ng-repeat="user in sm.users">
           <div> 
-            {{ user.username }}
-            <a ng-if="user.id !== sm.user.id"
+            {{ user.username }} {{ user.id === sm.current.id ? '(You)' : '' }}
+            <a ng-if="user.id !== sm.current.id"
               class="secondary-content"
               ng-click="sm.removeUser(user.id)">
               <i class="material-icons">delete</i>
@@ -27,7 +27,8 @@
       template: template,
       scope: {},
       bindToController: {
-        users: '='
+        users: '=',
+        current: '='
       },
       controller: Controller,
       controllerAs: 'sm',
@@ -41,13 +42,6 @@
     var sm = this;
 
     sm.removeUser = removeUser;
-
-    BotUser
-      .getCurrent()
-      .$promise
-      .then(function(user) {
-        sm.user = user;
-      });
 
     function removeUser(userId) {
       BotUser

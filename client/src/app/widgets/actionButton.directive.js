@@ -8,9 +8,10 @@
   /* @ngInject */
   function actionButton(multiline) {
     var template = multiline(function(){/*
-      <button type="submit" 
-        ng-disabled="dm.loadingState || dm.disabled" 
-        class="btn btn-flat btn-full primary-action waves-effect waves-light">
+      <button type="submit"
+        ng-class="dm.style"
+        ng-disabled="dm.loadingState || dm.disabled"
+        class="btn btn-flat primary-action waves-effect waves-light">
         <span ng-if="!dm.loadingState">{{ dm.defaultMessage }}</span>
 
         <div ng-if="dm.loadingState === 'loading' || dm.loadingState === true" 
@@ -33,6 +34,7 @@
       template: template,
       scope: {},
       bindToController: {
+        style: '@',
         defaultMessage: '@',
         loadingState: '=',
         loaderAnimation: '@',

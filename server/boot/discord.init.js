@@ -1,13 +1,6 @@
 const Discord  = require('discord.io');
 const Tactical = require('../bot/main.js')();
 
-var bot = new Discord.Client({
-  token: 'MjA5ODA2OTg3MDg3NTc3MDg5.CoFlew.Wv6ew0gbxVSYcR7Qpxp8P7s1a_U',
-  discriminator: 8742,
-  autorun: true,
-  bot: true
-});
-
 var readyState = {
   app: false,
   bot: false,
@@ -23,6 +16,13 @@ function initBot(cb) {
 }
 
 module.exports = function(app) {
+
+  const bot = new Discord.Client({
+    token: app.datasources.discord.settings.token,
+    discriminator: 8742,
+    autorun: true,
+    bot: true
+  });
 
   app.on('started', () => {
     readyState.app = true;
@@ -42,7 +42,7 @@ module.exports = function(app) {
   });
 
   initBot(() => {
-    Tactical.start(app, bot);
+    app.discordBot = Tactical.start(app, bot);
   });
 };
 

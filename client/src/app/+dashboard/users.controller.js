@@ -6,9 +6,10 @@
     .controller('UsersController', UsersController);
 
   /* @ngInject */
-  function UsersController(users) {
+  function UsersController(users, current) {
     var vm = this;
 
-    vm.users = users;
+    vm.users   = users;
+    vm.current = current;
   }
 })();

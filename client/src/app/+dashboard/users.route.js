@@ -24,7 +24,8 @@
     };
 
     var resolve = {
-      users: getUsers
+      users: getUsers,
+      current: getCurrentBotUser
     };
 
     $stateProvider
@@ -37,8 +38,13 @@
   }
 
   /* @ngInject */
-  function getUsers($stateParams, User) {
-    return User.find({}).$promise;
+  function getCurrentBotUser(BotUser) {
+    return BotUser.getCurrent().$promise;
+  }
+
+  /* @ngInject */
+  function getUsers($stateParams, BotUser) {
+    return BotUser.find({}).$promise;
   }
 
 })();

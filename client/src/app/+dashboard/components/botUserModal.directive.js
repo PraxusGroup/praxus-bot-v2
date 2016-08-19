@@ -3,38 +3,28 @@
 
   angular
     .module('app.dashboard')
-    .directive('noteModal', noteModal);
+    .directive('botUserModal', botUserModal);
 
   /* @ngInject */
-  function noteModal(multiline) {
+  function botUserModal(multiline) {
     var template = multiline(function(){/*
-      <modal-pane name="{{ sm.gamer.id }}">
+      <modal-pane name="Create-New-BotUser-Modal">
         <modal-title class="primary-action">
-          <h5 class="title truncate">{{ sm.gamer.username }}</h5>
+          <h5 class="title truncate">{{ sm.botUser.username || 'Create New User' }}</h5>
           <i class="modal-close-button modal-close material-icons right">clear</i>
         </modal-title>
         <modal-body>
           <div class="row">
             <div class="col s12">
-              @{{ sm.current.username }}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s12">
-              <div input-field>
-                <textarea 
-                  ng-model="sm.note.content" 
-                  class="materialize-textarea">
-                </textarea>
-                <label>Note Text</label>
-              </div>
+              
             </div>
           </div>
         </modal-body>
         <modal-actions>
           <action-button
-            ng-click="sm.addNote()"
-            default-message="Add Note"
+            ng-click="sm.addNewBotUser()"
+            style=""
+            default-message="New User"
             loading-state="sm.loading">
           </action-button>
           <div 
@@ -51,8 +41,7 @@
       template: template,
       scope: {},
       bindToController: {
-        gamer: '=',
-        current: '='
+        users: '='
       },
       controller: Controller,
       controllerAs: 'sm',
@@ -62,39 +51,33 @@
   }
 
   /* @ngInject */
-  function Controller(MemberNote, $timeout) {
+  function Controller(BotUser, $timeout) {
     var sm = this;
 
     sm.loading = false;
 
-    sm.addNote = addNote;
+    sm.addNewBotUser = addNewBotUser;
     sm.closeModal = closeModal;
 
-    sm.note = {
-      content: '',
-      postedBy: sm.current.username,
-      gamerId: sm.gamer.id
-    };
-
-    function addNote() {
+    function addNewBotUser() {
       sm.loading = true;
 
-      MemberNote
-        .create(sm.note)
+      BotUser
+        .create(sm.botUser)
         .$promise
         .then(function(res) {
+          sm.users.push(res);
           sm.loading = 'success';
-          sm.gamer.notes.push(res);
           sm.closeModal();
         });
     }
     
     function closeModal() {
-      var modalId = '#' + sm.gamer.id;
+      var modalId = '#Create-New-BotUser-Modal';
       $(modalId).closeModal();
 
       $timeout(function() {
-        sm.note.content = '';
+        sm.botUser = {};
         sm.loading = false;
       }, 250);
     }

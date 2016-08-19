@@ -30,6 +30,7 @@
         </material-input>
 
         <action-button
+          style="btn-full"
           default-message="Update"
           loading-state="sm.loading">
         </action-button>
