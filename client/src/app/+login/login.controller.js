@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /* @ngInject */
-  function LoginController($window, $timeout, $state, $stateParams, Dialog, User) {
+  function LoginController($timeout, $state, $stateParams, Dialog) {
     var vm = this;
 
     vm.mode = $stateParams.token && $stateParams.email ? 'new' : 'login';

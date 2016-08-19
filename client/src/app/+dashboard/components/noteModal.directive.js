@@ -51,7 +51,8 @@
       template: template,
       scope: {},
       bindToController: {
-        gamer: '='
+        gamer: '=',
+        current: '='
       },
       controller: Controller,
       controllerAs: 'sm',
@@ -61,7 +62,7 @@
   }
 
   /* @ngInject */
-  function Controller(User, MemberNote, $timeout) {
+  function Controller(MemberNote, $timeout) {
     var sm = this;
 
     sm.loading = false;
@@ -71,16 +72,9 @@
 
     sm.note = {
       content: '',
+      postedBy: sm.current.username,
       gamerId: sm.gamer.id
     };
-
-    User
-      .getCurrent()
-      .$promise
-      .then(function (user) {
-        sm.user = user;
-        sm.note.postedBy = sm.user.username;
-      });
 
     function addNote() {
       sm.loading = true;
@@ -94,7 +88,6 @@
           sm.closeModal();
         });
     }
-
     
     function closeModal() {
       var modalId = '#' + sm.gamer.id;

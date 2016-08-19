@@ -50,7 +50,7 @@
           </a>
         </div>
       </div>
-      <note-modal gamer="sm.gamer"></note-modal>
+      <note-modal gamer="sm.gamer" current="sm.current"></note-modal>
     */});
 
     var directive = {
@@ -58,7 +58,8 @@
       template: template,
       scope: {},
       bindToController: {
-        gamer: '='
+        gamer: '=',
+        current: '='
       },
       controller: Controller,
       controllerAs: 'sm'

@@ -37,13 +37,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
 /**
  * @ngdoc object
- * @name lbServices.User
- * @header lbServices.User
+ * @name lbServices.BotUser
+ * @header lbServices.BotUser
  * @object
  *
  * @description
  *
- * A $resource object for interacting with the `User` model.
+ * A $resource object for interacting with the `BotUser` model.
  *
  * ## Example
  *
@@ -53,19 +53,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
  *
  */
   module.factory(
-    "User",
+    "BotUser",
     [
       'LoopBackResource', 'LoopBackAuth', '$injector',
       function(Resource, LoopBackAuth, $injector) {
         var R = Resource(
-        urlBase + "/Users/:id",
+        urlBase + "/BotUsers/:id",
           { 'id': '@id' },
           {
 
             /**
              * @ngdoc method
-             * @name lbServices.User#prototype$__findById__accessTokens
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#prototype$__findById__accessTokens
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -89,21 +89,21 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "prototype$__findById__accessTokens": {
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Users/:id/accessTokens/:fk",
+              url: urlBase + "/BotUsers/:id/accessTokens/:fk",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#prototype$__destroyById__accessTokens
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#prototype$__destroyById__accessTokens
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -131,14 +131,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Users/:id/accessTokens/:fk",
+              url: urlBase + "/BotUsers/:id/accessTokens/:fk",
               method: "DELETE",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#prototype$__updateById__accessTokens
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#prototype$__updateById__accessTokens
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -166,25 +166,25 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "prototype$__updateById__accessTokens": {
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Users/:id/accessTokens/:fk",
+              url: urlBase + "/BotUsers/:id/accessTokens/:fk",
               method: "PUT",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#prototype$__get__accessTokens
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#prototype$__get__accessTokens
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
-             * Queries accessTokens of User.
+             * Queries accessTokens of BotUser.
              *
              * @param {Object=} parameters Request parameters.
              *
@@ -204,19 +204,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "prototype$__get__accessTokens": {
               isArray: true,
-              url: urlBase + "/Users/:id/accessTokens",
+              url: urlBase + "/BotUsers/:id/accessTokens",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#prototype$__create__accessTokens
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#prototype$__create__accessTokens
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -242,18 +242,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "prototype$__create__accessTokens": {
-              url: urlBase + "/Users/:id/accessTokens",
+              url: urlBase + "/BotUsers/:id/accessTokens",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#prototype$__delete__accessTokens
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#prototype$__delete__accessTokens
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -276,18 +276,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              * This method returns no data.
              */
             "prototype$__delete__accessTokens": {
-              url: urlBase + "/Users/:id/accessTokens",
+              url: urlBase + "/BotUsers/:id/accessTokens",
               method: "DELETE",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#prototype$__count__accessTokens
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#prototype$__count__accessTokens
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
-             * Counts accessTokens of User.
+             * Counts accessTokens of BotUser.
              *
              * @param {Object=} parameters Request parameters.
              *
@@ -310,14 +310,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `count` – `{number=}` -
              */
             "prototype$__count__accessTokens": {
-              url: urlBase + "/Users/:id/accessTokens/count",
+              url: urlBase + "/BotUsers/:id/accessTokens/count",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#create
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#create
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -344,18 +344,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "create": {
-              url: urlBase + "/Users",
+              url: urlBase + "/BotUsers",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#createMany
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#createMany
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -382,19 +382,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "createMany": {
               isArray: true,
-              url: urlBase + "/Users",
+              url: urlBase + "/BotUsers",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#upsert
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#upsert
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -421,18 +421,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "upsert": {
-              url: urlBase + "/Users",
+              url: urlBase + "/BotUsers",
               method: "PUT",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#exists
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#exists
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -457,14 +457,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `exists` – `{boolean=}` -
              */
             "exists": {
-              url: urlBase + "/Users/:id/exists",
+              url: urlBase + "/BotUsers/:id/exists",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#findById
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#findById
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -488,18 +488,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "findById": {
-              url: urlBase + "/Users/:id",
+              url: urlBase + "/BotUsers/:id",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#find
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#find
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -521,19 +521,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "find": {
               isArray: true,
-              url: urlBase + "/Users",
+              url: urlBase + "/BotUsers",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#findOne
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#findOne
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -555,18 +555,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "findOne": {
-              url: urlBase + "/Users/findOne",
+              url: urlBase + "/BotUsers/findOne",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#updateAll
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#updateAll
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -593,14 +593,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              * The number of instances updated
              */
             "updateAll": {
-              url: urlBase + "/Users/update",
+              url: urlBase + "/BotUsers/update",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#deleteById
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#deleteById
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -622,18 +622,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "deleteById": {
-              url: urlBase + "/Users/:id",
+              url: urlBase + "/BotUsers/:id",
               method: "DELETE",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#count
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#count
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -658,14 +658,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `count` – `{number=}` -
              */
             "count": {
-              url: urlBase + "/Users/count",
+              url: urlBase + "/BotUsers/count",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#prototype$updateAttributes
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#prototype$updateAttributes
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -691,18 +691,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
             "prototype$updateAttributes": {
-              url: urlBase + "/Users/:id",
+              url: urlBase + "/BotUsers/:id",
               method: "PUT",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#createChangeStream
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#createChangeStream
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -732,14 +732,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `changes` – `{ReadableStream=}` -
              */
             "createChangeStream": {
-              url: urlBase + "/Users/change-stream",
+              url: urlBase + "/BotUsers/change-stream",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#login
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#login
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -788,14 +788,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
                   return response.resource;
                 },
               },
-              url: urlBase + "/Users/login",
+              url: urlBase + "/BotUsers/login",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#logout
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#logout
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -835,14 +835,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
                   return responseError.resource;
                 },
               },
-              url: urlBase + "/Users/logout",
+              url: urlBase + "/BotUsers/logout",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#confirm
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#confirm
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -869,14 +869,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              * This method returns no data.
              */
             "confirm": {
-              url: urlBase + "/Users/confirm",
+              url: urlBase + "/BotUsers/confirm",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#resetPassword
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#resetPassword
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -904,14 +904,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              * This method returns no data.
              */
             "resetPassword": {
-              url: urlBase + "/Users/reset",
+              url: urlBase + "/BotUsers/reset",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.User#getCurrent
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#getCurrent
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -929,7 +929,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *   from the server.
              */
             'getCurrent': {
-              url: urlBase + "/Users" + '/:id',
+              url: urlBase + "/BotUsers" + '/:id',
               method: 'GET',
               params: {
                 id: function() {
@@ -953,8 +953,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.User#updateOrCreate
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#updateOrCreate
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -981,15 +981,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
         R["updateOrCreate"] = R["upsert"];
 
             /**
              * @ngdoc method
-             * @name lbServices.User#update
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#update
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -1019,8 +1019,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.User#destroyById
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#destroyById
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -1042,15 +1042,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
         R["destroyById"] = R["deleteById"];
 
             /**
              * @ngdoc method
-             * @name lbServices.User#removeById
-             * @methodOf lbServices.User
+             * @name lbServices.BotUser#removeById
+             * @methodOf lbServices.BotUser
              *
              * @description
              *
@@ -1072,25 +1072,25 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `User` object.)
+             * This usually means the response is a `BotUser` object.)
              * </em>
              */
         R["removeById"] = R["deleteById"];
 
         /**
          * @ngdoc method
-         * @name lbServices.User#getCachedCurrent
-         * @methodOf lbServices.User
+         * @name lbServices.BotUser#getCachedCurrent
+         * @methodOf lbServices.BotUser
          *
          * @description
          *
          * Get data of the currently logged user that was returned by the last
-         * call to {@link lbServices.User#login} or
-         * {@link lbServices.User#getCurrent}. Return null when there
+         * call to {@link lbServices.BotUser#login} or
+         * {@link lbServices.BotUser#getCurrent}. Return null when there
          * is no user logged in or the data of the current user were not fetched
          * yet.
          *
-         * @returns {Object} A User instance.
+         * @returns {Object} A BotUser instance.
          */
         R.getCachedCurrent = function() {
           var data = LoopBackAuth.currentUserData;
@@ -1099,8 +1099,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
         /**
          * @ngdoc method
-         * @name lbServices.User#isAuthenticated
-         * @methodOf lbServices.User
+         * @name lbServices.BotUser#isAuthenticated
+         * @methodOf lbServices.BotUser
          *
          * @returns {boolean} True if the current user is authenticated (logged in).
          */
@@ -1110,8 +1110,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
         /**
          * @ngdoc method
-         * @name lbServices.User#getCurrentId
-         * @methodOf lbServices.User
+         * @name lbServices.BotUser#getCurrentId
+         * @methodOf lbServices.BotUser
          *
          * @returns {Object} Id of the currently logged-in user or null.
          */
@@ -1121,13 +1121,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
         /**
         * @ngdoc property
-        * @name lbServices.User#modelName
-        * @propertyOf lbServices.User
+        * @name lbServices.BotUser#modelName
+        * @propertyOf lbServices.BotUser
         * @description
         * The name of the model represented by this $resource,
-        * i.e. `User`.
+        * i.e. `BotUser`.
         */
-        R.modelName = "User";
+        R.modelName = "BotUser";
 
 
 

@@ -6,10 +6,11 @@
     .controller('DashboardController', DashboardController);
 
   /* @ngInject */
-  function DashboardController(gamers) {
+  function DashboardController(gamers, current) {
     var vm = this;
 
-    vm.gamers = gamers;
+    vm.gamers  = gamers;
+    vm.current = current;
     vm.lastActvityFilter = lastActvityFilter;
 
     function lastActvityFilter(item) {

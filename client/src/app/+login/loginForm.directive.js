@@ -48,7 +48,7 @@
   }
 
   /* @ngInject */
-  function Controller($timeout, $stateParams, User){
+  function Controller($timeout, $stateParams, BotUser){
     var sm = this;
 
     sm.submitLogin = submitLogin;
@@ -65,7 +65,7 @@
 
       var user = null;
 
-      User
+      BotUser
         .login(login)
         .$promise
         .then(function (res) {

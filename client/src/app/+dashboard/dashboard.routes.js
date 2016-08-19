@@ -27,7 +27,8 @@
     };
 
     var dashboardResolve = {
-      gamers: getGamers
+      gamers: getGamers,
+      current: getCurrentBotUser
     };
 
     $stateProvider
@@ -38,27 +39,32 @@
         data: dashboardData,
         resolve: dashboardResolve
       });
-
     
-    function getGamers($q, Gamer) {
-      var deferred = $q.defer();
+  }
 
-      var query = {
-        filter: {
-          where: {
-            roles: {
-              inq: ['Member', 'Applicant']
-            }
-          },
-          include: 'notes',
-          limit: 10,
-          order: 'lastForgivenTime ASC'
-        }
-      };
+  /* @ngInject */
+  function getCurrentBotUser(BotUser) {
+    return BotUser.getCurrent().$promise;
+  }
 
-      return Gamer.find(query).$promise;
-    }
-    
+  /* @ngInject */
+  function getGamers($q, Gamer) {
+    var deferred = $q.defer();
+
+    var query = {
+      filter: {
+        where: {
+          roles: {
+            inq: ['Member', 'Applicant']
+          }
+        },
+        include: 'notes',
+        limit: 10,
+        order: 'lastForgivenTime ASC'
+      }
+    };
+
+    return Gamer.find(query).$promise;
   }
 
 })();

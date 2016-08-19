@@ -39,7 +39,7 @@
   }
 
   /* @ngInject */
-  function Controller($timeout, User) {
+  function Controller($timeout, BotUser) {
     var sm = this;
 
     sm.submitEmail = submitEmail;
@@ -48,7 +48,7 @@
     function submitEmail(login) {
       sm.loading = 'loading';
 
-      User
+      BotUser
         .forgot(login)
         .then(function() {
           return loadingState('success');

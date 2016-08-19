@@ -1,9 +1,10 @@
 {
   "_meta": {
     "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
       "../common/models",
-      "./models",
-      "./models/loopback"
+      "./models"
     ],
     "mixins": [
       "loopback/common/mixins",
@@ -11,9 +12,6 @@
       "../common/mixins",
       "./mixins"
     ]
-  },
-  "User": {
-    "dataSource": "database"
   },
   "AccessToken": {
     "dataSource": "database",
@@ -30,6 +28,9 @@
   "Role": {
     "dataSource": "database",
     "public": false
+  },
+  "BotUser": {
+    "dataSource": "database"
   },
   "Game": {
     "dataSource": "database"

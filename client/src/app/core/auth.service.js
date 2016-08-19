@@ -6,7 +6,7 @@
     .factory('Auth', AuthService);
 
   /* @ngInject */
-  function AuthService($q, localStorage, User, LoopBackAuth) {
+  function AuthService($q, localStorage, BotUser, LoopBackAuth) {
     var service = {
       logout: logout
     };
@@ -17,7 +17,7 @@
     function logout() {
       var deferred = $q.defer();
 
-      User
+      BotUser
         .logout()
         .$promise
         .then(function(res) {

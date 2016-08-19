@@ -8,6 +8,7 @@
     <div class="row">
       <div ng-repeat="gamer in vm.gamers | filter:vm.lastActvityFilter | orderBy:'lastForgivenTime':true" class="col s12 m6">
         <admin-card
+          current="vm.current"
           gamer="gamer">
         </admin-card>
       </div>
