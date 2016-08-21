@@ -1,0 +1,5 @@
+client/src/vendor/** 
+node_modules/**
+client/dist/**
+client/src/reload/**
+client/src/app/core/lb-services.js

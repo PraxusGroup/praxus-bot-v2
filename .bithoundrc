@@ -1,0 +1,9 @@
+{
+  "ignore": [
+    "node_modules/**",
+    "client/src/vendor/**",
+    "client/dist/**"
+    "client/src/reload/**",
+    "client/src/app/core/lb-services.js"
+  ]
+}

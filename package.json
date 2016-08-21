@@ -55,6 +55,8 @@
   },
   "devDependencies": {
     "ava": "^0.16.0",
+    "jshint": "^2.9.3",
+    "jshint-stylish": "^2.2.1",
     "nodemon": "^1.10.0",
     "nsp": "^2.6.0"
   },

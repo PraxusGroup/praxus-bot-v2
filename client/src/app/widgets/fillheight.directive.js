@@ -19,7 +19,7 @@
 
     function link(scope, element, attrs) {
       if (scope.debounceWait === 0) {
-        angular.element($window).on('resize', windowResize);
+        angular.element($window).on('resize', onWindowResize);
       } else {
         // allow debounce wait time to be passed in.
         // if not passed in, default to a reasonable 250ms
@@ -46,10 +46,10 @@
       }
 
       function onWindowResize() {
-        var elementOffsetTop = element[0].offsetTop;
-        var elementBottomMarginAndBorderHeight = getBottomMarginAndBorderHeight(element);
+        var top = element[0].offsetTop;
+        var bottom = getBottomMarginAndBorderHeight(element);
 
-        var elementHeight = $window.innerHeight - elementOffsetTop - elementBottomMarginAndBorderHeight;
+        var elementHeight = $window.innerHeight - top - bottom;
         element.css('min-height', elementHeight + 'px');
       }
 

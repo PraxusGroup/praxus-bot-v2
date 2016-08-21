@@ -1,3 +1,4 @@
+/* jshint -W079 */
 const Promise = require('bluebird');
 
 class Game {

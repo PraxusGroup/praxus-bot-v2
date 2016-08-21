@@ -67,7 +67,8 @@
 
     function findSelection(data) {
       for (var i = 0; i < sm.options.values.length; i++) {
-        if (data.toLowerCase() === sm.options.values[i].value.toLowerCase() && sm.options.values[i].checked)
+        if (data.toLowerCase() === sm.options.values[i].value.toLowerCase() && 
+          sm.options.values[i].checked)
           return true;
       }
 
@@ -77,13 +78,14 @@
     function monoSelect() {
       var found = false;
 
-      for (i = 0; i < sm.options.values.length; i++) {
+      for (var i = 0; i < sm.options.values.length; i++) {
         if (sm.selected.toLowerCase() === sm.options.values[i].value.toLowerCase())
           found = true;
       }
 
-      for (var i = 0; i < sm.options.values.length; i++) {
-        if (sm.options.values[i].checked && sm.selected !== sm.options.values[i].value && found)
+      for (i = 0; i < sm.options.values.length; i++) {
+        if (sm.options.values[i].checked && 
+          sm.selected !== sm.options.values[i].value && found)
           sm.options.values[i].checked = false;
       }
     }
