@@ -48,12 +48,7 @@ class Gamer {
       }
     };
 
-    let newGamer = {
-      username: gamer.username,
-      discordUserId: gamer.id,
-      discriminator: gamer.discriminator || null,
-      discordAvatarURL: gamer.avatar || null,
-    };
+    let newGamer = this._createGamerModel(gamer);
 
     if (this.syncedGamers.includes(gamer.id)) {
       return Promise.resolve(newGamer);
@@ -71,14 +66,18 @@ class Gamer {
       }
     };
 
-    let newGamer = {
+    let newGamer = this._createGamerModel(gamer);
+
+    return this.db.Gamer.findOrCreate(query, newGamer);
+  }
+
+  _createGamerModel(gamer) {
+    return {
       username: gamer.username,
       discordUserId: gamer.id,
       discriminator: gamer.discriminator || null,
       discordAvatarURL: gamer.avatar || null,
     };
-
-    return this.db.Gamer.findOrCreate(query, newGamer);
   }
 
   syncGamers(users) {

@@ -106,17 +106,11 @@ var config = {
     sources: {
       app: {
         css: [
-          sourcePath + 'css/*.css',
           sourcePath + 'css/**/*.css',
-          sourcePath + 'css/**/**/*.css',
-          sourcePath + 'app/**/*.css',
-          sourcePath + 'app/**/**/*.css'
+          sourcePath + 'app/**/*.css'
         ],
         js: [
-          sourcePath + 'app/*.js',
-          sourcePath + 'app/**/*.js',
-          sourcePath + 'app/**/**/*.js',
-          sourcePath + 'app/**/**/**/*.js'
+          sourcePath + 'app/**/*.js'
         ]
       }
     }
@@ -124,11 +118,8 @@ var config = {
   sass: {
     target: sourcePath + 'css',
     source: [
-      sourcePath + 'css/scss/*.scss',
-      sourcePath + 'css/*.scss',
       sourcePath + 'app/**/*.scss',
-      sourcePath + 'app/**/**/*.scss',
-      sourcePath + 'app/**/**/**/*.scss'
+      sourcePath + 'scss/**/*.scss'
     ]
   }
 };
@@ -384,10 +375,10 @@ gulp.task('move:angular', function(){
 // --------------------------------------------------------------------
 
 //Default gulp task for dev purposes
-gulp.task('default', ['watch', 'inject', 'sass', 'build:js:lbservices']);
+gulp.task('default', ['watch', 'inject', 'build:js:lbservices']);
 
 //Injects all css/js files into our index.html src file
-gulp.task('inject', function () {
+gulp.task('inject', ['sass'], function () {
 
   return gulp.src(config.inject.target)
     .pipe(plumber(onError))

@@ -4,6 +4,7 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node .",
+    "pretest": "jshint --reporter=node_modules/jshint-stylish .",
     "test": "ava",
     "posttest": "nsp check",
     "heroku-prebuild": "bower i",
