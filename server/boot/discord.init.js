@@ -12,7 +12,7 @@ function initBot(cb) {
       clearInterval(id);
       cb();
     }
-  }, 100);
+  }, 50);
 }
 
 module.exports = function(app) {
