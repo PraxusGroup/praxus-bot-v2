@@ -27,7 +27,7 @@
     "ui-router-extras": "0.1.2",
     "multiline": "1.0.2",
     "es6-promise": "3.2.2",
-    "angular-resource": "1.5.8",
+    "angular-resource": "1.5.8"
   },
   "resolutions": {
     "angular": "1.5.8",

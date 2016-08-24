@@ -64,7 +64,7 @@ var client      = new raygun.Client().init({apiKey: raygunKey});
 
 //The title and icon that will be used for the gulp notifications
 var onError = function(err) {
-  client.send(err, {}, function (response) { 
+  client.send(err.message, err, function (response) { 
     console.log(err);
   });
 };
@@ -432,7 +432,7 @@ function writeReleaseFile(apiKey) {
   var release = `(function() {
   'use strict';
 
-  /* global rg4js: false */
+  /* global Raygun: false */
 
   angular
     .module('app.core')
@@ -442,8 +442,7 @@ function writeReleaseFile(apiKey) {
   function raygunConfig($interval) {
     var raygunCheck = $interval(function() {
        if (Raygun) {
-        Raygun.init('${apiKey}');
-        Raygun.attach();
+        Raygun.init('${apiKey}').attach();
         $interval.cancel(raygunCheck);
       }
     }, 50);

@@ -57,7 +57,9 @@
       exception.message = appErrorPrefix + exception.message;
 
       /* global Raygun: false */
-      Raygun.send(new Error(exception.message), exception);
+      if (typeof Raygun.send === 'function') {
+        Raygun.send(new Error(exception.message), exception);
+      }
 
       logger.error(exception.message, errorData);
 

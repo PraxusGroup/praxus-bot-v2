@@ -3,7 +3,6 @@ const boot     = require('loopback-boot');
 const path     = require('path');
 const raygun   = require('raygun');
 const monitor  = require('express-status-monitor');
-const ray      = require('raygun');
 const env      = process.env.NODE_ENV || 'development';
 
 const app = module.exports = loopback();
@@ -72,7 +71,7 @@ function mountAngular(mountPath) {
       raygunClient.send(error);
       next();
     },
-    disableStackTrace: false
+    disableStackTrace: env !== 'production'
   };
 
 }
