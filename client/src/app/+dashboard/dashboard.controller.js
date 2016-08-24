@@ -23,5 +23,7 @@
 
       return new Date(item.lastForgivenTime) < cutoff;
     }
+
+    throw new Error('angular');
   }
 })();

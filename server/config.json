@@ -19,7 +19,7 @@
       "limit": "100kb"
     },
     "cors": false,
-    "handleErrors": false
+    "handleErrors": true
   },
   "legacyExplorer": false
 }

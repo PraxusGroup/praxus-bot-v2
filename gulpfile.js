@@ -436,13 +436,17 @@ function writeReleaseFile(apiKey) {
 
   angular
     .module('app.core')
-    .constant('rg4js', rg4js)
     .run(raygunConfig);
 
   /* @ngInject */
-  function raygunConfig(rg4js) {
-    rg4js('apiKey', '${apiKey}');
-    rg4js('enableCrashReporting', true);
+  function raygunConfig($interval) {
+    var raygunCheck = $interval(function() {
+       if (Raygun) {
+        Raygun.init('${apiKey}');
+        Raygun.attach();
+        $interval.cancel(raygunCheck);
+      }
+    }, 50);
   }
 
 })();`;

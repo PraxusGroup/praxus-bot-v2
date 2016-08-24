@@ -3,7 +3,6 @@
 /* global 
   swal:false, 
   Materialize:false,
-  MaterialAvatar:false, 
   multiline:false,
   localStorage:false
 */

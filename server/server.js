@@ -3,8 +3,9 @@ const boot     = require('loopback-boot');
 const path     = require('path');
 const raygun   = require('raygun');
 const monitor  = require('express-status-monitor');
+const ray      = require('raygun');
+const env      = process.env.NODE_ENV || 'development';
 
-const env = process.env.NODE_ENV || 'development';
 const app = module.exports = loopback();
 
 app.start = function() {
@@ -45,7 +46,6 @@ boot(app, __dirname, function(err) {
 
 function mountAngular(mountPath) {
   const staticPath = path.resolve(__dirname, mountPath);
-
   const raygunClient = new raygun.Client().init({
     apiKey: app.datasources.raygun.settings.token
   });
@@ -67,6 +67,12 @@ function mountAngular(mountPath) {
     res.sendFile(staticPath + '/index.html');
   });
 
-  //An Error Handler
-  app.use(raygunClient.expressHandler);
+  app.get('remoting').errorHandler = {
+    handler: function(error, req, res, next) {
+      raygunClient.send(error);
+      next();
+    },
+    disableStackTrace: false
+  };
+
 }

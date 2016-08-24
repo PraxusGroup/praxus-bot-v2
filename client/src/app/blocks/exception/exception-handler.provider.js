@@ -55,9 +55,13 @@
       var errorData       = {exception: exception, cause: cause};
 
       exception.message = appErrorPrefix + exception.message;
-      $delegate(exception, cause);
+
+      /* global Raygun: false */
+      Raygun.send(new Error(exception.message), exception);
 
       logger.error(exception.message, errorData);
+
+      $delegate(exception, cause);
     };
   }
 })();

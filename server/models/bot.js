@@ -1,9 +1,9 @@
 module.exports = function(Bot) {
 
-  Bot.removeRole = function(discordId, cb) {
+  Bot.removeRole = function(discordId, next) {
     
-    
-    cb(null, {});
+
+    next(null, {});
   };
 
   Bot.remoteMethod(
