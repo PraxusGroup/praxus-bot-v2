@@ -13,5 +13,10 @@ module.exports = {
     token: process.env.NODEBB_TOKEN,
     name: 'nodebb',
     connector: 'memory'
+  },
+  raygun: {
+    token: process.env.RAYGUN_APIKEY,
+    name: 'raygun',
+    connector: 'memory'
   }
 };

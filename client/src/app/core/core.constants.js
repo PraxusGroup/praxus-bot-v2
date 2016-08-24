@@ -5,7 +5,8 @@
   Materialize:false,
   MaterialAvatar:false, 
   multiline:false,
-  localStorage:false 
+  localStorage:false,
+  rg4js: false
 */
 
 ;(function() {
@@ -17,7 +18,7 @@
     .constant('Materialize', Materialize)
     .constant('swal', swal)
     .constant('multiline', multiline)
-    .constant('localStorage', localStorage);
-    
+    .constant('localStorage', localStorage)
+    .constant('rg4js', rg4js);
 
 })();

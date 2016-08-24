@@ -37,6 +37,7 @@ client/dist
 client/src/reload
 client/src/css/*.css
 client/src/css/**/*.css
+client/src/app/core/raygun*
 dist
 server/datasources.local.js
 

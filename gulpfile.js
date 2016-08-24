@@ -18,13 +18,6 @@ var notify      = require('gulp-notify');
 var changed 		= require('gulp-changed');
 var loopback    = require('gulp-loopback-sdk-angular');
 
-
-var raven         = require('raven');
-var dsn = '' +
-  '@app.getsentry.com/';
-
-//var ravenClient = new raven.Client(dsn);
-
 // Run sass alongside burbon (fastest way of sass compiling)
 var sass        = require('gulp-sass');
 var neat        = require('node-neat').includePaths;
@@ -54,30 +47,26 @@ var ngAnnotate  = require('gulp-ng-annotate');
 var htmlmin     = require('gulp-htmlmin');
 var rename      = require('gulp-rename');
 
-//Sentry Integration
-var sentryOpts = {
-  DOMAIN: '',
-  API_URL: '',
-  API_KEY: '',
-  debug: true ,
-  versionPrefix: ''
-};
-
-//var sentryRelease = require('gulp-sentry-release')('./package.json', sentryOpts);
-
 // --------------------------------------------------------------------
 // Error Handler
 // --------------------------------------------------------------------
 
+var raygunKey;
+
+if (env === 'development') {
+  raygunKey = require('./server/datasources.local').raygun.token;
+} else {
+  raygunKey = process.env.RAYGUN_APIKEY;
+}
+
+var raygun      = require('raygun');
+var client      = new raygun.Client().init({apiKey: raygunKey});
+
 //The title and icon that will be used for the gulp notifications
 var onError = function(err) {
-  console.log(err);
-  /*ravenClient.captureMessage('Error with gulp build', {
-    level: 'info',
-    extra: {
-      error: err
-    }
-  });*/
+  client.send(err, {}, function (response) { 
+    console.log(err);
+  });
 };
 
 // --------------------------------------------------------------------
@@ -131,41 +120,25 @@ var config = {
 var destPath  = __dirname + '/client/dist/';
 var destIndex = destPath + 'index.html';
 var buildDate = (new Date()).getTime();
-var buildId = parseInt(buildDate/10000);
-buildId = '' + buildId;
-buildId = buildId.substring(2);
+var buildId = ('' + parseInt(buildDate/10000)).substring(2);
 buildId = env.substring(0, 4) + '-' + buildId;
 
 var build = {
   css: [
-    sourcePath + 'css/*.css',
     sourcePath + 'css/**/*.css',
-    sourcePath + 'css/**/**/*.css',
-    sourcePath + 'app/**/*.css',
-    sourcePath + 'app/**/**/*.css',
-    sourcePath + 'app/**/**/**/*.css'
+    sourcePath + 'app/**/*.css'
   ],
   js: [
-    sourcePath + 'app/*.js',
-    sourcePath + 'app/**/*.js',
-    sourcePath + 'app/**/**/*.js',
-    sourcePath + 'app/**/**/**/*.js',
-    sourcePath + 'app/**/**/**/**/*.js'
+    sourcePath + 'app/**/*.js'
   ],
   html: [
-    sourcePath + 'app/**/*.html',
-    sourcePath + 'app/**/**/*.html',
-    sourcePath + 'app/**/**/**/*.html',
+    sourcePath + 'app/**/*.html'
   ],
   images: [
-    sourcePath + 'images/*.*',
-    sourcePath + 'images/**/*.*',
-    sourcePath + 'images/**/**/*.*'
+    sourcePath + 'images/**/*.*'
   ],
   assets: [
-    sourcePath + 'fonts/*.*',
-    sourcePath + 'fonts/**/*.*',
-    sourcePath + 'fonts/**/**/*.*'
+    sourcePath + 'fonts/**/*.*'
   ]
 };
 
@@ -204,45 +177,6 @@ var bowerJS = bowerFiles(buildJSOptions);
 var bowerCSS = bowerFiles({
     filter: /\.css$/i
 });
-
-// --------------------------------------------------------------------
-// RELEASE Tasks
-// --------------------------------------------------------------------
-
-/*gulp.task('release', function() {
-  if (env === 'development')
-    return true;
-
-  return gulp.start('release:raven');
-});
-
-gulp.task('release:raven', ['release:sources'], function(){
-  
-  var destPaths = [
-    dest.jsPath  + '*.js',
-    dest.mapPath + '*.*'
-  ];
-
-  if (process.env.DISABLE_RAVEN)
-    return true;
-
-  return gulp.src(destPaths, {base: destPath})
-    .pipe(plumber(onError))
-    .pipe(sentryRelease.release(buildId));
-});
-
-gulp.task('release:sources', function(){{
-  var sourceFilePaths = [];
-
-  if (process.env.DISABLE_RAVEN)
-    return true;
-
-  sourceFilePaths = sourceFilePaths.concat(bowerJS, config.inject.sources.app.js);
-
-  return gulp.src(sourceFilePaths, {base: sourcePath})
-    .pipe(plumber(onError))
-    .pipe(sentryRelease.release(buildId));
-}});*/
 
 // --------------------------------------------------------------------
 // BUILD Tasks
@@ -326,7 +260,7 @@ gulp.task('build:js:vendor', function() {
 
 gulp.task('build:js:app', function() {
 
-  writeRavenReleaseFile(buildId);
+  writeReleaseFile(raygunKey);
 
   return gulp.src(build.js)
     .pipe(angularSort())
@@ -490,18 +424,26 @@ gulp.task('reload-css', function(){
 });
 
 
-function writeRavenReleaseFile(buildId) {
+function writeReleaseFile(apiKey) {
 
-  if (process.env.DISABLE_RAVEN)
+  if (process.env.DISABLE_RELEASE)
     return true;
   
-  var ravenRelease = "angular.module('app.core').run(function(){ " +
-    "'use strict'; Raven.setRelease('" + buildId + "'); });";
+  var release = `(function() {
+  'use strict';
 
-    ravenRelease = "Raven.config('" + 
-      "" + 
-      "').install();" + ravenRelease;
+  angular
+    .module('app.core')
+    .run(raygunConfig);
+
+  /* @ngInject */
+  function raygunConfig(rg4js) {
+    rg4js('apiKey', ${apiKey});
+    rg4js('enableCrashReporting', true);
+  }
+
+})();`;
   
 
-  return fs.writeFileSync(sourcePath + 'app/core/raven.release.js', ravenRelease);
+  return fs.writeFileSync(sourcePath + 'app/core/raygun.config.js', release);
 }

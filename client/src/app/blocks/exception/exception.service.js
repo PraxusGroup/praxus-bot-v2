@@ -6,7 +6,7 @@
       .factory('exception', exception);
 
   /* @ngInject */
-  function exception(logger, Raven) {
+  function exception(logger) {
     var service = {
       catcher: catcher
     };

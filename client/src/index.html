@@ -16,8 +16,8 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="css/sideNav.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/+login/login.css">
     <link rel="stylesheet" href="css/+dashboard/dashboard.css">
+    <link rel="stylesheet" href="css/+login/login.css">
     <link rel="stylesheet" href="css/widgets/actionButton.css">
     <link rel="stylesheet" href="css/widgets/fillheight.css">
     <link rel="stylesheet" href="css/widgets/materialInput.css">
@@ -60,12 +60,12 @@
     <script src="vendor/angular-permission/dist/angular-permission-ng.js"></script>
     <script src="vendor/localforage/dist/localforage.js"></script>
     <script src="vendor/angular-materialize/src/angular-materialize.js"></script>
-    <script src="vendor/raven-js/dist/raven.js"></script>
     <script src="vendor/angular-payments/lib/angular-payments.js"></script>
     <script src="vendor/ui-router-extras/release/ct-ui-router-extras.js"></script>
     <script src="vendor/multiline/browser.js"></script>
     <script src="vendor/es6-promise/promise.js"></script>
     <script src="vendor/angular-resource/angular-resource.js"></script>
+    <script src="vendor/raygun4js/dist/raygun.js"></script>
     <script src="vendor/angular-localforage/dist/angular-localForage.js"></script>
     <!-- endinject -->
 
@@ -76,7 +76,6 @@
     <script src="app/blocks/logger/dialog.service.js"></script>
     <script src="app/blocks/exception/exception.module.js"></script>
     <script src="app/blocks/exception/exception.service.js"></script>
-    <script src="app/blocks/exception/exception.const.js"></script>
     <script src="app/blocks/exception/exception-handler.provider.js"></script>
     <script src="app/+dashboard/dashboard.module.js"></script>
     <script src="app/+dashboard/components/sideNav.directive.js"></script>
@@ -86,16 +85,6 @@
     <script src="app/+dashboard/components/botUserModal.directive.js"></script>
     <script src="app/+dashboard/components/botUserList.directive.js"></script>
     <script src="app/+dashboard/components/adminCard.directive.js"></script>
-    <script src="app/core/lb-services.js"></script>
-    <script src="app/core/core.module.js"></script>
-    <script src="app/core/core.router.config.js"></script>
-    <script src="app/core/core.roles.js"></script>
-    <script src="app/core/core.permissions.js"></script>
-    <script src="app/core/core.constants.js"></script>
-    <script src="app/core/core.config.js"></script>
-    <script src="app/core/change.service.js"></script>
-    <script src="app/core/cache.service.js"></script>
-    <script src="app/core/auth.service.js"></script>
     <script src="app/widgets/widgets.module.js"></script>
     <script src="app/widgets/selectableGroup.directive.js"></script>
     <script src="app/widgets/selectable.directive.js"></script>
@@ -107,6 +96,16 @@
     <script src="app/widgets/materialDate.directive.js"></script>
     <script src="app/widgets/fillheight.directive.js"></script>
     <script src="app/widgets/actionButton.directive.js"></script>
+    <script src="app/core/lb-services.js"></script>
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/core.router.config.js"></script>
+    <script src="app/core/core.roles.js"></script>
+    <script src="app/core/core.permissions.js"></script>
+    <script src="app/core/core.constants.js"></script>
+    <script src="app/core/core.config.js"></script>
+    <script src="app/core/change.service.js"></script>
+    <script src="app/core/cache.service.js"></script>
+    <script src="app/core/auth.service.js"></script>
     <script src="app/+dashboard/users.route.js"></script>
     <script src="app/+dashboard/users.controller.js"></script>
     <script src="app/+dashboard/gamer.route.js"></script>

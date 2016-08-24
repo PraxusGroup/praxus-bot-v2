@@ -1,16 +1,11 @@
 const loopback = require('loopback');
 const boot     = require('loopback-boot');
 const path     = require('path');
-const raven    = require('raven');
+const raygun   = require('raygun');
+const monitor  = require('express-status-monitor');
 
 const env = process.env.NODE_ENV || 'development';
 const app = module.exports = loopback();
-
-const dsn = process.env.RAVEN_DSN || 
-  'https://da7785c75c21461cb03821b4168a20b0@app.getsentry.com/90501';
-const ravenClient = new raven.Client(dsn);
-
-ravenClient.patchGlobal();
 
 app.start = function() {
   
@@ -30,7 +25,7 @@ app.start = function() {
       angularPath = '../client/src/';
         
       explorerPath = app.get('loopback-component-explorer').mountPath;
-      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
+      console.log(`Browse your REST API at ${baseUrl}${explorerPath}`);
     }
     
     mountAngular(angularPath);
@@ -50,6 +45,12 @@ boot(app, __dirname, function(err) {
 
 function mountAngular(mountPath) {
   const staticPath = path.resolve(__dirname, mountPath);
+
+  const raygunClient = new raygun.Client().init({
+    apiKey: app.datasources.raygun.settings.token
+  });
+
+  app.use(monitor());
   
   app.use(loopback.static(staticPath));
 
@@ -67,29 +68,5 @@ function mountAngular(mountPath) {
   });
 
   //An Error Handler
-  app.use(function handleErrors(err, req, res, next) {
-    var errorCode;
-    if (err) {
-      try {
-        var code = err.code || err.status || err.statusCode || false;
-        if (code) {
-          errorCode = parseInt(code);
-        }
-      } catch (e) {
-        errorCode = false;
-      }
-    }
-
-    ravenClient.captureMessage(err.message || err, {
-      extra: {
-        error: err,
-        code: errorCode,
-        method: req.method,
-        url: req.originalUrl,
-        body: req.body
-      }
-    });
-
-    next(err);
-  });
+  app.use(raygunClient.expressHandler);
 }

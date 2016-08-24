@@ -57,10 +57,6 @@
       exception.message = appErrorPrefix + exception.message;
       $delegate(exception, cause);
 
-      /*Raven.captureMessage(exception.message, {
-        extra: errorData
-      });*/
-
       logger.error(exception.message, errorData);
     };
   }
