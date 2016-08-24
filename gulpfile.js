@@ -432,7 +432,7 @@ function writeReleaseFile(apiKey) {
   var release = `(function() {
   'use strict';
 
-  /* globalrg4js: false */
+  /* global rg4js: false */
 
   angular
     .module('app.core')
@@ -441,7 +441,7 @@ function writeReleaseFile(apiKey) {
 
   /* @ngInject */
   function raygunConfig(rg4js) {
-    rg4js('apiKey', ${apiKey});
+    rg4js('apiKey', '${apiKey}');
     rg4js('enableCrashReporting', true);
   }
 
