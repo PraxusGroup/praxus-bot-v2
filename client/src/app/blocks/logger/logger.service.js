@@ -6,7 +6,7 @@
       .factory('logger', logger);
 
   /* @ngInject */
-  function logger($log, Materialize, Raven) {
+  function logger($log, Materialize) {
     var service = {
       showToasts: true,
       showErrors: false,

@@ -432,8 +432,11 @@ function writeReleaseFile(apiKey) {
   var release = `(function() {
   'use strict';
 
+  /* globalrg4js: false */
+
   angular
     .module('app.core')
+    .constant('rg4js', rg4js)
     .run(raygunConfig);
 
   /* @ngInject */
