@@ -11,7 +11,8 @@
       success:  successDialog,
       confirm:  confirmDialog,
       error:    errorDialog,
-      genericError: genericErrorDialog
+      genericError: genericErrorDialog,
+      escapePromise: escapePromise
     };
 
     return service;
@@ -28,7 +29,7 @@
         type: 'success'
       }, resolve);
 
-      attachKeyDown(resolve);
+      _attachKeyDown(resolve);
 
       deferred.promise
         .then(function(){
@@ -53,7 +54,7 @@
         type: 'error'
       }, resolve);
 
-      attachKeyDown(resolve);
+      _attachKeyDown(resolve);
 
       deferred.promise
         .then(function(){
@@ -89,7 +90,7 @@
         resolve(confirm);
       });
 
-      attachKeyDown(resolve);
+      _attachKeyDown(resolve);
 
       deferred.promise
         .then(function(){
@@ -121,7 +122,11 @@
       errorDialog(title || 'Uh oh', message);
     }
 
-    function attachKeyDown(fn) {
+    function escapePromise() {
+      return $q(function quit(){return null;});
+    }
+
+    function _attachKeyDown(fn) {
       var check = setInterval(function() {
         if ($('.sweet-alert').hasClass('hideSweetAlert')) {
           callback();

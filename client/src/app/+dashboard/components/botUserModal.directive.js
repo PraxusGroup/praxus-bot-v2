@@ -16,14 +16,48 @@
         <modal-body>
           <div class="row">
             <div class="col s12">
-              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <material-input
+                name="username"
+                label="Username"
+                placeholder=" "
+                required="true"
+                ng-model="sm.botUser.username">
+              </material-input>
+              <material-input
+                name="email"
+                label="Email"
+                placeholder=" "
+                type="email"
+                validate="true"
+                required="true"
+                ng-model="sm.botUser.email">
+              </material-input>
+              <material-input
+                name="password"
+                label="Password"
+                required="true"
+                placeholder=" "
+                type="password"
+                ng-model="sm.botUser.password">
+              </material-input>
+              <material-input
+                name="confirm"
+                label="Confirm Password"
+                placeholder=" "
+                required="true"
+                type="password"
+                ng-model="sm.confirm">
+              </material-input>
             </div>
           </div>
         </modal-body>
         <modal-actions>
           <action-button
             ng-click="sm.addNewBotUser()"
-            style=""
             default-message="New User"
             loading-state="sm.loading">
           </action-button>
@@ -51,7 +85,7 @@
   }
 
   /* @ngInject */
-  function Controller(BotUser, $timeout) {
+  function Controller(BotUser, Dialog, $timeout) {
     var sm = this;
 
     sm.loading = false;
@@ -62,11 +96,28 @@
     function addNewBotUser() {
       sm.loading = true;
 
+      return;
+
+      if (sm.confirm !== sm.botUser.password) {
+
+        return Dialog.error(
+            'Confirm Password Incorrect', 
+            'Your confirm password does not match the password you entered'
+          )
+          .then(function() {
+            sm.loading = false;
+          });
+      }
+
       BotUser
         .create(sm.botUser)
         .$promise
         .then(function(res) {
           sm.users.push(res);
+
+          return Dialog.success('Added User', 'Successfully added user');
+        })
+        .then(function(res) {
           sm.loading = 'success';
           sm.closeModal();
         });

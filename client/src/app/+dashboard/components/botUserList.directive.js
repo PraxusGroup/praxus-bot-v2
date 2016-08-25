@@ -14,7 +14,7 @@
             {{ user.username }} {{ user.id === sm.current.id ? '(You)' : '' }}
             <a ng-if="user.id !== sm.current.id"
               class="secondary-content"
-              ng-click="sm.removeUser(user.id)">
+              ng-click="sm.removeUser(user)">
               <i class="material-icons">delete</i>
             </a>
           </div>
@@ -43,14 +43,25 @@
 
     sm.removeUser = removeUser;
 
-    function removeUser(userId) {
-      BotUser
-        .deleteById({id: userId})
-        .$promise
+    function removeUser(user) {
+      Dialog
+        .confirm('Are you sure?', 'Are you sure you want to delete ' + user.username)
+        .then(function(confirm) {
+          if (!confirm) Dialog.escapePromise();
+
+          return BotUser.deleteById({id: user.id}).$promise;
+        })
         .then(function() {
           Dialog.success('Deleted User', 'Successfully deleted user');
+
+          for (var i = 0; i < sm.users.length; i++) { 
+            if (sm.users[i].id === user.id) {
+              sm.users.splice(i, 1);
+              break;
+            }
+          }
         })
-        .catch(function(err){
+        .catch(function(err) {
           Dialog.error('Error', 'Unable to delete user' + (err.message || err));
         });
     }

@@ -33,7 +33,7 @@
           data-activates="slide-out" 
           data-sidenav="left"
           data-menuwidth="225"
-          data-closeonclick="false">
+          data-closeonclick="true">
 
           <i class="material-icons">menu</i>
         </a>
