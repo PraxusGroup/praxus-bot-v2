@@ -337,7 +337,12 @@ gulp.task('sass', function() {
     .pipe(sass(
       { includePaths: ['styles'].concat(neat) }
     ))
-    .pipe(gulp.dest(config.sass.target));
+    .pipe(gulp.dest(config.sass.target))
+    .on('error', function (err) {
+        
+      // Allows sass to continue watch tasks even after an error
+      this.emit('end');
+    });
 });
 
 //Watches for changes in files that should be streamed/compiled to browser
