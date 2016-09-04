@@ -7,8 +7,10 @@
     "pretest": "jshint --reporter=node_modules/jshint-stylish .",
     "test": "ava",
     "posttest": "nsp check",
-    "heroku-prebuild": "bower i",
-    "heroku-postbuild": "gulp build"
+    "preinstall": "echo preinstall",
+    "postinstall": "echo postinstall",
+    "heroku-prebuild": "echo prebuild && bower i",
+    "heroku-postbuild": "echo postbuild && gulp build"
   },
   "cacheDirectories": [
     "node_modules",
