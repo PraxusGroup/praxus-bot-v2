@@ -96,8 +96,6 @@
     function addNewBotUser() {
       sm.loading = true;
 
-      return;
-
       if (sm.confirm !== sm.botUser.password) {
 
         return Dialog.error(

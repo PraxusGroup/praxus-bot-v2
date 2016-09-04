@@ -16,7 +16,8 @@
 
         <div ng-if="dm.loadingState === 'loading' || dm.loadingState === true" 
           class="preloader-svg-wrapper animate-bounce">
-          <img class="loading-image" ng-src="images/svg-loaders/{{ dm.loaderAnimation || 'three-dots' }}.svg" />
+          <img class="loading-image" 
+            ng-src="images/svg-loaders/{{ dm.loaderAnimation || 'three-dots' }}.svg" />
         </div>
 
         <span ng-if="dm.loadingState === 'error'">
