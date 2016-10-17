@@ -1,0 +1,23 @@
+<div class="slide-in anim-slide-below-fade side-nav-left main-container"
+  ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 }}">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center-align">
+        <material-input
+          name="search"
+          label="Member Search"
+          type="text"
+          ng-model="vm.searchFilter">
+        </material-input>
+      </div>
+    </div>
+    <div class="row">
+      <div ng-repeat="gamer in vm.gamers | filter: vm.searchFilter | limitTo:10" class="col s12 m6">
+        <admin-card
+          current="vm.current"
+          gamer="gamer">
+        </admin-card>
+      </div>
+    </div>
+  </div>
+</div>

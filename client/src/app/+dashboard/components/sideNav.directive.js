@@ -16,6 +16,12 @@
           </a>
         </li>
         <li ui-sref-active-eq="active">
+          <a ui-sref="dashboard.members">
+            Member Search
+            <i class="material-icons">view_list</i>
+          </a>
+        </li>
+        <li ui-sref-active-eq="active">
           <a ui-sref="dashboard.users">
             Bot Users
             <i class="material-icons">android</i>
